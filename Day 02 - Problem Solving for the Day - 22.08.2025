@@ -1,0 +1,64 @@
+
+
+//1.Write a Java program that takes two numbers as input and uses if-else conditions to find and display the largest number.If both numbers are equal, display a message saying they are equal.
+
+Input:
+First number: 25
+Second number: 40
+
+Output:
+The largest number is: 40//
+import java.util.Scanner;
+
+public class LargestOfTwoNumbers {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Taking input from user
+        System.out.print("Enter first number: ");
+        int num1 = sc.nextInt();
+
+        System.out.print("Enter second number: ");
+        int num2 = sc.nextInt();
+
+        // Checking largest number
+        if (num1 > num2) {
+            System.out.println("The largest number is: " + num1);
+        } else if (num2 > num1) {
+            System.out.println("The largest number is: " + num2);
+        } else {
+            System.out.println("Both numbers are equal");
+        }
+    }
+}
+
+
+//2.Write a Java program that takes a person’s age as input and checks if they are eligible to vote.
+  
+  A person is eligible to vote if their age is 18 or above.
+
+Input:
+Age: 17
+
+Output:
+You are not eligible to vote.//
+import java.util.Scanner;
+
+public class VotingEligibility {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Taking age input
+        System.out.print("Enter your age: ");
+        int age = sc.nextInt();
+
+        // Checking eligibility
+        if (age >= 18) {
+            System.out.println("You are eligible to vote.");
+        } else {
+            System.out.println("You are not eligible to vote.");
+        }
+    }
+}
