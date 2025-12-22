@@ -1,0 +1,165 @@
+//HomeWork Questions for Holidays 
+
+//Question 01 :
+
+//Electricity Bill Calculator / Calculate electricity bill based on units consumed:
+
+//First 100 units → 5/unit
+
+//Next 100 units → 7/unit
+
+//Above 200 units → 10/unit
+
+//Test Cases:
+
+//Input: 250 → Output: 1700
+
+//Input: 50 → Output: 250
+
+//Input: 150 → Output: 850//
+
+import java.util.Scanner;
+
+public class ElectricityBill {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter units consumed: ");
+        int units = sc.nextInt();
+
+        int bill = 0;
+
+        if (units <= 100) {
+            bill = units * 5;
+        } else if (units <= 200) {
+            bill = (100 * 5) + ((units - 100) * 7);
+        } else {
+            bill = (100 * 5) + (100 * 7) + ((units - 200) * 10);
+        }
+
+        System.out.println("Electricity Bill: " + bill);
+    }
+}
+
+//Question 02 :
+//Vehicle Toll Charge / Calculate toll charges:
+//Car → 100
+//Bus → 200
+//Truck → 300
+//If vehicle has more than 3 axles → Extra 50
+//Test Cases:
+//Input: Vehicle = Car, axles = 2 → Output: 100
+//Input: Vehicle = Truck, axles = 4 → Output: 350
+//Input: Vehicle = Bus, axles = 3 → Output: 200
+import java.util.Scanner;
+
+public class TollCharge {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter vehicle type (Car/Bus/Truck): ");
+        String vehicle = sc.next();
+
+        System.out.print("Enter number of axles: ");
+        int axles = sc.nextInt();
+
+        int charge = 0;
+
+        if (vehicle.equalsIgnoreCase("Car")) {
+            charge = 100;
+        } else if (vehicle.equalsIgnoreCase("Bus")) {
+            charge = 200;
+        } else if (vehicle.equalsIgnoreCase("Truck")) {
+            charge = 300;
+        } else {
+            System.out.println("Invalid vehicle type");
+            return;
+        }
+
+        if (axles > 3) {
+            charge += 50;
+        }
+
+        System.out.println("Total Toll Charge: " + charge);
+    }
+}
+
+
+//Question 03 :
+//Traffic Light Signal / Print action based on traffic light color:
+//1 → Red → Stop
+//2 → Yellow → Ready
+//3 → Green → Go
+//Test Cases:
+//Input: 1 → Output: Stop
+//Input: 3 → Output: Go
+//Input: 5 → Output: Invalid Signal
+import java.util.Scanner;
+
+public class TrafficSignal {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter signal number: ");
+        int signal = sc.nextInt();
+
+        switch (signal) {
+            case 1:
+                System.out.println("Stop");
+                break;
+            case 2:
+                System.out.println("Ready");
+                break;
+            case 3:
+                System.out.println("Go");
+                break;
+            default:
+                System.out.println("Invalid Signal");
+        }
+    }
+}
+
+//Question 04 :
+//Bank menu allows the following options:
+//1 → Check Balance
+//2 → Deposit
+//3 → Withdraw
+//4 → Exit
+//Print the action chosen.
+//Test Cases:
+//Input: 1 → Output: Check Balance
+//Input: 3 → Output: Withdraw
+//Input: 5 → Output: Invalid Option
+import java.util.Scanner;
+
+public class BankMenu {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("1. Check Balance");
+        System.out.println("2. Deposit");
+        System.out.println("3. Withdraw");
+        System.out.println("4. Exit");
+
+        System.out.print("Enter your choice: ");
+        int choice = sc.nextInt();
+
+        switch (choice) {
+            case 1:
+                System.out.println("Check Balance");
+                break;
+            case 2:
+                System.out.println("Deposit");
+                break;
+            case 3:
+                System.out.println("Withdraw");
+                break;
+            case 4:
+                System.out.println("Exit");
+                break;
+            default:
+                System.out.println("Invalid Option");
+        }
+    }
+}
