@@ -1,0 +1,91 @@
+//You are given two integers M and N. Write a program to calculate the product of all odd integers between M and N (inclusive).
+//Conditions:
+
+If M > N, print "Invalid Range" and return 1.
+
+If M == N and it is odd, return that number as the product.
+
+If there are no odd numbers between M and N, return 0.
+
+Skip any odd number that is a multiple of 5 while calculating the product.
+
+If the product exceeds 100,000, print "Product too large" instead of the product.
+
+Test Case 1:
+
+Input: M = 3, N = 11
+
+Output: 2079
+
+Test Case 2:
+
+Input: M = 10, N = 14
+
+Output: 143
+
+Test Case 3:
+
+Input: M = 1, N = 20
+
+//Output: "Product too large"
+//Test Case 4:
+//Input: M = 20, N = 10
+ //Output: "Invalid Range", return 1
+
+import java.util.Scanner;
+
+public class ProductOddWithConditions {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter value of M: ");
+        int M = sc.nextInt();
+
+        System.out.print("Enter value of N: ");
+        int N = sc.nextInt();
+
+        long product = 1;
+        boolean foundOdd = false;
+
+        // Condition 1: Invalid range
+        if (M > N) {
+            System.out.println("Invalid Range");
+            System.out.println("Return value: 1");
+            sc.close();
+            return;
+        }
+
+        // Loop through range
+        for (int i = M; i <= N; i++) {
+
+            // Check odd number
+            if (i % 2 != 0) {
+
+                // Skip multiples of 5
+                if (i % 5 == 0) {
+                    continue;
+                }
+
+                foundOdd = true;
+                product = product * i;
+
+                // Condition 5: Product too large
+                if (product > 100000) {
+                    System.out.println("Product too large");
+                    sc.close();
+                    return;
+                }
+            }
+        }
+
+        // Condition 3: No odd numbers
+        if (!foundOdd) {
+            System.out.println("Output: 0");
+        } else {
+            System.out.println("Output: " + product);
+        }
+
+        sc.close();
+    }
+}
