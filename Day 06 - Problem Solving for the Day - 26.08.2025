@@ -1,0 +1,47 @@
+//A company conducted a coding contest where N participants scored different marks. The company wants to identify the highest score (top performer) and the lowest score (weakest performer) to decide rewards and extra training.
+//Write a Java program that takes an array of integers representing the scores of participants and prints the maximum and minimum score.
+//Test Case :
+//Input :
+//scores = [45, 78, 12, 89, 34, 67]
+//output :
+//Maximum Score = 89
+//Minimum Score = 12
+import java.util.Scanner;
+
+public class MaxMinScore {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input number of participants
+        System.out.print("Enter number of participants: ");
+        int n = sc.nextInt();
+
+        int[] scores = new int[n];
+
+        // Input scores
+        System.out.println("Enter the scores:");
+        for (int i = 0; i < n; i++) {
+            scores[i] = sc.nextInt();
+        }
+
+        // Assume first element as max and min
+        int max = scores[0];
+        int min = scores[0];
+
+        // Find max and min
+        for (int i = 1; i < n; i++) {
+            if (scores[i] > max) {
+                max = scores[i];
+            }
+            if (scores[i] < min) {
+                min = scores[i];
+            }
+        }
+
+        // Output results
+        System.out.println("Maximum Score = " + max);
+        System.out.println("Minimum Score = " + min);
+
+        sc.close();
+    }
+}
