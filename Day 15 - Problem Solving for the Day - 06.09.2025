@@ -1,0 +1,82 @@
+//Airline rules for baggage allowance are as follows:
+//Travel Class:
+//Economy → Free allowance = 20 kg
+//Business → Free allowance = 30 kg
+//Passenger Type:
+//If Student, extra 10 kg free allowance.
+//If Senior Citizen (Age ≥ 60), extra 5 kg free allowance.
+//Excess Baggage Charges:
+//For each extra kg → ₹500 is charged.
+//Write a Java program using nested if conditions to calculate the baggage charge based on:
+//1 .Travel Class
+//2.Passenger Type (Student / Senior Citizen / Normal)
+//3.Age
+//4 .Total Baggage Weight
+//Test Case 01 :
+//Input :
+//Class = Economy  
+//Passenger = Student  
+//Age = 22  
+//Baggage Weight = 28 kg  
+
+//Output :
+//Baggage Charge = 0
+//Test Case 02 :
+
+//Input :
+//Class = Business  
+//Passenger = Senior Citizen  
+//Age = 65  
+//Baggage Weight = 40 kg  
+
+//Output :
+//Baggage Charge = 2500
+
+import java.util.Scanner;
+
+public class BaggageChargeCalculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Inputs
+        System.out.print("Enter Travel Class (Economy/Business): ");
+        String travelClass = sc.nextLine();
+
+        System.out.print("Enter Passenger Type (Student/Senior/Normal): ");
+        String passengerType = sc.nextLine();
+
+        System.out.print("Enter Age: ");
+        int age = sc.nextInt();
+
+        System.out.print("Enter Total Baggage Weight (kg): ");
+        int baggageWeight = sc.nextInt();
+
+        int freeAllowance = 0;
+
+        // Travel class allowance
+        if (travelClass.equalsIgnoreCase("Economy")) {
+            freeAllowance = 20;
+        } else if (travelClass.equalsIgnoreCase("Business")) {
+            freeAllowance = 30;
+        }
+
+        // Passenger type allowance
+        if (passengerType.equalsIgnoreCase("Student")) {
+            freeAllowance = freeAllowance + 10;
+        } else if (passengerType.equalsIgnoreCase("Senior") && age >= 60) {
+            freeAllowance = freeAllowance + 5;
+        }
+
+        int excessWeight = baggageWeight - freeAllowance;
+        int charge = 0;
+
+        // Calculate charge
+        if (excessWeight > 0) {
+            charge = excessWeight * 500;
+        }
+
+        System.out.println("Baggage Charge = " + charge);
+
+        sc.close();
+    }
+}
