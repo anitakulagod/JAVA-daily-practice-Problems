@@ -1,0 +1,85 @@
+//1.ATM Withdrawal System.
+ //- A user enters the withdrawal amount.
+ //- If the balance is greater than or equal to the withdrawal amount, print "Transaction Successful".
+ //- Else print "Insufficient Balance".
+
+import java.util.Scanner;
+
+public class ATMWithdrawal {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter account balance: ");
+        int balance = sc.nextInt();
+
+        System.out.print("Enter withdrawal amount: ");
+        int withdraw = sc.nextInt();
+
+        if (balance >= withdraw) {
+            System.out.println("Transaction Successful");
+        } else {
+            System.out.println("Insufficient Balance");
+        }
+
+        sc.close();
+    }
+}
+//2. Online Shopping Discount
+//- A customer’s total purchase is given.
+//-  If amount ≥ 5000 → Apply 20% discount.
+//-  Else if amount ≥ 2000 → Apply 10% discount.
+//- Else → No discount. 
+import java.util.Scanner;
+
+public class ShoppingDiscount {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter total purchase amount: ");
+        double amount = sc.nextDouble();
+        double finalAmount;
+
+        if (amount >= 5000) {
+            finalAmount = amount - (amount * 0.20);
+            System.out.println("20% Discount Applied");
+        } else if (amount >= 2000) {
+            finalAmount = amount - (amount * 0.10);
+            System.out.println("10% Discount Applied");
+        } else {
+            finalAmount = amount;
+            System.out.println("No Discount Applied");
+        }
+
+        System.out.println("Final Amount to Pay: " + finalAmount);
+        sc.close();
+    }
+}
+
+
+//3.Traffic Signal System
+//Input: Signal Color.
+//- If color = "Red" → Print "Stop".
+//- If color = "Yellow" → Print "Get Ready".
+//- If color = "Green" → Print "Go". dynamic java code for students
+import java.util.Scanner;
+
+public class TrafficSignal {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter signal color (Red/Yellow/Green): ");
+        String color = sc.nextLine();
+
+        if (color.equalsIgnoreCase("Red")) {
+            System.out.println("Stop");
+        } else if (color.equalsIgnoreCase("Yellow")) {
+            System.out.println("Get Ready");
+        } else if (color.equalsIgnoreCase("Green")) {
+            System.out.println("Go");
+        } else {
+            System.out.println("Invalid Signal Color");
+        }
+
+        sc.close();
+    }
+}
