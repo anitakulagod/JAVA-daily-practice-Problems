@@ -1,0 +1,48 @@
+//Given  two integers M and N, calculate the  sum of the factorials of all the integers from M and N inclusive. if M is greater than N , return 0 or display an appropriate message
+//Test Case 01 : 
+//Input :
+//M = 3, N = 5
+//Output :
+//150 
+//Test Case 02 :
+//M = 6, N = 4
+//Output : 0
+import java.util.Scanner;
+
+public class SumOfFactorials {
+    
+    // Method to calculate factorial
+    static long factorial(int num) {
+        long fact = 1;
+        for (int i = 1; i <= num; i++) {
+            fact = fact * i;
+        }
+        return fact;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input values
+        System.out.print("Enter value of M: ");
+        int M = sc.nextInt();
+
+        System.out.print("Enter value of N: ");
+        int N = sc.nextInt();
+
+        long sum = 0;
+
+        // Condition check
+        if (M > N) {
+            System.out.println("Output: 0");
+            System.out.println("M is greater than N, invalid range.");
+        } else {
+            for (int i = M; i <= N; i++) {
+                sum = sum + factorial(i);
+            }
+            System.out.println("Output: " + sum);
+        }
+
+        sc.close();
+    }
+}
