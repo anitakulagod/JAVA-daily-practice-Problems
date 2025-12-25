@@ -1,0 +1,73 @@
+//You are designing a user registration system. As part of security, you need to ensure that the user sets a strong password. Write a Java program that checks the password strength based on the following rules:
+
+//1.Password length must be at least 8 characters.
+//2.Must contain at least one uppercase letter (A-Z).
+//3.Must contain at least one lowercase letter (a-z).
+//4.Must contain at least one digit (0-9).
+//5.Must contain at least one special character (e.g., !@#$%^&*).
+ //   - If the password meets all 5 conditions, print: "Strong Password".
+//    - If it meets 3–4 conditions, print: "Moderate Password".
+//   - Otherwise, print: "Weak Password".
+//Constraint: Use if-else statements for the logic (do not use regex or libraries).
+
+///Test Case 01 :
+//Input: "Abc123!@"
+//Output: "Strong Password"
+
+//Test Case 02 :
+//Input: "abc123"
+//Output: "Weak Password"
+import java.util.Scanner;
+
+public class PasswordStrength {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input password
+        System.out.print("Enter password: ");
+        String password = sc.nextLine();
+
+        int count = 0;
+
+        boolean hasUpper = false;
+        boolean hasLower = false;
+        boolean hasDigit = false;
+        boolean hasSpecial = false;
+
+        // Rule 1: Length check
+        if (password.length() >= 8) {
+            count++;
+        }
+
+        // Check each character
+        for (int i = 0; i < password.length(); i++) {
+            char ch = password.charAt(i);
+
+            if (ch >= 'A' && ch <= 'Z') {
+                hasUpper = true;
+            } else if (ch >= 'a' && ch <= 'z') {
+                hasLower = true;
+            } else if (ch >= '0' && ch <= '9') {
+                hasDigit = true;
+            } else {
+                hasSpecial = true;
+            }
+        }
+
+        if (hasUpper) count++;
+        if (hasLower) count++;
+        if (hasDigit) count++;
+        if (hasSpecial) count++;
+
+        // Final decision
+        if (count == 5) {
+            System.out.println("Strong Password");
+        } else if (count >= 3) {
+            System.out.println("Moderate Password");
+        } else {
+            System.out.println("Weak Password");
+        }
+
+        sc.close();
+    }
+}
