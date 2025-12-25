@@ -1,0 +1,37 @@
+//Given  two integers M and N, calculate the product  of all integers from M and N inclusive.if M is greater than N , return 1 or display an appropriate message 
+//Test Case 1:
+//Input : M = 2, N =6 
+//Output : 720 
+//Test Case 2 : 
+//Input : M= 9 , N = 3
+//Output: 1
+
+import java.util.Scanner;
+
+public class ProductFromMToN {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input values
+        System.out.print("Enter value of M: ");
+        int M = sc.nextInt();
+
+        System.out.print("Enter value of N: ");
+        int N = sc.nextInt();
+
+        long product = 1;
+
+        // Condition check
+        if (M > N) {
+            System.out.println("Output: 1");
+            System.out.println("M is greater than N, product not possible.");
+        } else {
+            for (int i = M; i <= N; i++) {
+                product = product * i;
+            }
+            System.out.println("Output: " + product);
+        }
+
+        sc.close();
+    }
+}
