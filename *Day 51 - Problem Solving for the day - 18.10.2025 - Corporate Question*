@@ -1,0 +1,51 @@
+//Write a program to compare two strings character by character without using the built-in equals() method in Java.
+//*The program should return:* 
+//1.true → if both strings are exactly the same (same length and same characters in the same order).
+//2.false → otherwise.
+//You can use methods like charAt(), length(), or convert the strings to character arrays if needed — but do not use equals(), compareTo(),  or similar built-in comparison methods.
+//*Test Case 01 :* 
+//Input : 
+//str1 : "Java"
+//str2 : "java"
+//Output : false 
+
+// *Test Case 02 :* 
+//Input : 
+//str1 : "Hello"
+//str2 ; "Hello"
+
+import java.util.Scanner;
+
+public class CompareStringsCharByChar {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input strings
+        System.out.print("Enter first string: ");
+        String str1 = sc.nextLine();
+
+        System.out.print("Enter second string: ");
+        String str2 = sc.nextLine();
+
+        // Compare lengths
+        if (str1.length() != str2.length()) {
+            System.out.println(false);
+            sc.close();
+            return;
+        }
+
+        boolean isEqual = true;
+
+        // Compare each character
+        for (int i = 0; i < str1.length(); i++) {
+            if (str1.charAt(i) != str2.charAt(i)) {
+                isEqual = false;
+                break;
+            }
+        }
+
+        System.out.println(isEqual);
+
+        sc.close();
+    }
+}
