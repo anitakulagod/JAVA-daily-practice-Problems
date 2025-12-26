@@ -1,0 +1,43 @@
+//Write a Java program to check whether the digits of a given number are in ascending order.The digits should be checked from left to right.
+//If every digit is greater than or equal to the previous digit, then the number is said to be in ascending order. Print "Digits are in ascending order" if true, otherwise print "Digits are not in ascending order"
+//*Test Case 01:*
+//Input : 12345
+//Output : Digits are in ascending order
+
+//*Test Case 02 :*
+//Input : 12341
+//Output : Digits are not in ascending order
+
+import java.util.Scanner;
+
+public class AscendingDigits {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter a number: ");
+        long n = sc.nextLong();
+
+        // Convert number to string to check left to right
+        String num = String.valueOf(Math.abs(n));
+
+        boolean isAscending = true;
+
+        // Compare digits from left to right
+        for (int i = 1; i < num.length(); i++) {
+            if (num.charAt(i) < num.charAt(i - 1)) {
+                isAscending = false;
+                break;
+            }
+        }
+
+        // Output
+        if (isAscending) {
+            System.out.println("Digits are in ascending order");
+        } else {
+            System.out.println("Digits are not in ascending order");
+        }
+
+        sc.close();
+    }
+}
