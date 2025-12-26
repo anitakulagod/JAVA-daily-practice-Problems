@@ -1,0 +1,50 @@
+//Write a Java program to count the number of digits in a given integer. The program should work for positive, negative numbers, and zero.
+
+//Input:
+//An integer n.
+//Output:
+//Print the number of digits in the given number.
+
+//*Test Case 01 :*
+//Input : 12345
+//output : 5
+
+//*Test Case 02 :*
+//Input : 0 
+//Output : 1
+
+//*Test Case 03 :*
+//Input : -9876
+//Output : 4
+
+import java.util.Scanner;
+
+public class CountDigits {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter an integer: ");
+        int n = sc.nextInt();
+
+        int count = 0;
+
+        // Special case for 0
+        if (n == 0) {
+            count = 1;
+        } else {
+            // Convert negative number to positive
+            n = Math.abs(n);
+
+            while (n > 0) {
+                n = n / 10;
+                count++;
+            }
+        }
+
+        // Output
+        System.out.println("Number of digits: " + count);
+
+        sc.close();
+    }
+}
