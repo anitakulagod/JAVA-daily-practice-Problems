@@ -1,0 +1,60 @@
+//Write a Java program (function) that: Takes an integer input representing the weight of clothes in grams (0 to 7000). Based on the input weight, it decides the water level and estimated time:
+//*Conditions:*
+//If weight = 0 → Time Estimated: 0 minutes
+//If weight is 1 to 2000 → Time Estimated: 25 minutes
+//If weight is 2001 to 4000 → Time Estimated: 35 minutes
+//If weight is 4001 to 7000 → Time Estimated: 45 minutes
+//If weight > 7000 → Output "OVERLOADED"
+//For any invalid input (negative or non-integer) → Output "INVALID INPUT"
+//*Test Case 01 :*
+//Input: 2000
+//Output: Time Estimated: 25 minutes
+
+//*Test Case 02 :*
+//Input: 8000
+//Output: OVERLOADED
+
+//*Test Case 03 :*
+//Input: -5
+//Output: INVALID INPUT
+
+import java.util.Scanner;
+
+public class WashingMachineTime {
+
+    // Function to calculate time
+    static void calculateTime(int weight) {
+
+        if (weight < 0) {
+            System.out.println("INVALID INPUT");
+        } 
+        else if (weight == 0) {
+            System.out.println("Time Estimated: 0 minutes");
+        } 
+        else if (weight >= 1 && weight <= 2000) {
+            System.out.println("Time Estimated: 25 minutes");
+        } 
+        else if (weight >= 2001 && weight <= 4000) {
+            System.out.println("Time Estimated: 35 minutes");
+        } 
+        else if (weight >= 4001 && weight <= 7000) {
+            System.out.println("Time Estimated: 45 minutes");
+        } 
+        else {
+            System.out.println("OVERLOADED");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter weight of clothes (in grams): ");
+        int weight = sc.nextInt();
+
+        // Function call
+        calculateTime(weight);
+
+        sc.close();
+    }
+}
