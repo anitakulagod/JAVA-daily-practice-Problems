@@ -1,0 +1,43 @@
+//Write a Java program that reads an integer from the user and calculates the sum of even digits and sum of odd digits separately.
+//The program should then display both sums clearly.
+//Input Format: A single integer number.
+//Output Format: Two integers representing the sum of even digits and the sum of odd digits in the following format:
+//Even Sum = X, Odd Sum = Y
+
+//*Test Case:*
+//Input : 12345
+//Output : Even Sum = 6, Odd Sum = 9
+
+import java.util.Scanner;
+
+public class EvenOddDigitSum {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter a number: ");
+        int n = sc.nextInt();
+
+        int num = Math.abs(n);   // Ignore negative sign
+        int evenSum = 0;
+        int oddSum = 0;
+
+        // Process digits
+        while (num > 0) {
+            int digit = num % 10;
+
+            if (digit % 2 == 0) {
+                evenSum += digit;
+            } else {
+                oddSum += digit;
+            }
+
+            num = num / 10;
+        }
+
+        // Output
+        System.out.println("Even Sum = " + evenSum + ", Odd Sum = " + oddSum);
+
+        sc.close();
+    }
+}
