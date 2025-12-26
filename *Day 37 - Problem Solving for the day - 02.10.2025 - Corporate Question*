@@ -1,0 +1,47 @@
+//Write a Java program to find the product of digits of a given number.The program should work for both positive and negative numbers (consider digits only, ignore the sign).
+//If the number is 0, the product should be 0.
+
+//*Test Case 01 :*
+//Input  : 234
+//Output : 24
+
+//*Test Case 02 :*
+//Input  : 105
+//Output : 0
+
+//*Test Case 03 :*
+//Input  : 7
+//Output : 7
+
+import java.util.Scanner;
+
+public class ProductOfDigits {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter a number: ");
+        int n = sc.nextInt();
+
+        // If number is 0
+        if (n == 0) {
+            System.out.println("Output: 0");
+            return;
+        }
+
+        int num = Math.abs(n); // Ignore sign
+        int product = 1;
+
+        // Calculate product of digits
+        while (num > 0) {
+            int digit = num % 10;
+            product = product * digit;
+            num = num / 10;
+        }
+
+        // Output
+        System.out.println("Output: " + product);
+
+        sc.close();
+    }
+}
