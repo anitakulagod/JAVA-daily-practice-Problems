@@ -1,0 +1,45 @@
+//Write a java program to find the sum of all prime numbers within a given range (inclusive).
+//*Test Case :*
+//*Input :*
+//Start = 10  
+//End = 20
+//*output :*
+//Sum of prime numbers: 60
+
+import java.util.Scanner;
+
+public class SumOfPrimes {
+
+    // Function to check if a number is prime
+    static boolean isPrime(int n) {
+        if (n <= 1) return false;
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input start and end of range
+        System.out.print("Enter start: ");
+        int start = sc.nextInt();
+        System.out.print("Enter end: ");
+        int end = sc.nextInt();
+
+        int sum = 0;
+
+        // Iterate through the range
+        for (int i = start; i <= end; i++) {
+            if (isPrime(i)) {
+                sum += i;
+            }
+        }
+
+        // Output
+        System.out.println("Sum of prime numbers: " + sum);
+
+        sc.close();
+    }
+}
