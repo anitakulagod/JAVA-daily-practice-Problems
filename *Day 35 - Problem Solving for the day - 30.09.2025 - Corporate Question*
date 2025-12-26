@@ -1,0 +1,63 @@
+//*Write a Java program to swap the first and last digit of a given number.*
+//- If the number has only one digit, the output should be the same number.
+// - The program should handle both small and large numbers.
+
+//*Test Case 01 :*
+//Input : 12345
+//Output : 52341
+
+//*Test Case 02 :*
+//Input : 9876
+//Output : 6879
+
+//*Test Case 03 :*
+//Input : 808
+//Output : 808
+
+import java.util.Scanner;
+
+public class SwapFirstLastDigit {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter a number: ");
+        long n = sc.nextLong();
+
+        // Single digit number
+        if (n >= -9 && n <= 9) {
+            System.out.println("Output: " + n);
+            return;
+        }
+
+        long num = Math.abs(n);
+        long lastDigit = num % 10;
+        long firstDigit = num;
+
+        // Find first digit
+        while (firstDigit >= 10) {
+            firstDigit = firstDigit / 10;
+        }
+
+        // Count number of digits
+        int digits = String.valueOf(num).length();
+
+        // Remove first and last digits
+        long middlePart = (num % (long) Math.pow(10, digits - 1)) / 10;
+
+        // Swap digits
+        long result = (long) (lastDigit * Math.pow(10, digits - 1))
+                      + (middlePart * 10)
+                      + firstDigit;
+
+        // Restore negative sign if needed
+        if (n < 0) {
+            result = -result;
+        }
+
+        // Output
+        System.out.println("Output: " + result);
+
+        sc.close();
+    }
+}
