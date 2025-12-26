@@ -1,0 +1,38 @@
+//Write a Java program to swap two given strings without using any temporary variable.
+//- You should modify the original variables to swap their values.
+//Hint: Use concatenation and substring operations (or arithmetic for numbers).
+//*Test Case :*
+//Input :
+//String 1: Java
+//String 2: Python
+//Output :
+//After swapping:
+//String 1: Python
+//String 2: Java
+
+import java.util.Scanner;
+
+public class SwapStringsWithoutTemp {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input strings
+        System.out.print("Enter String 1: ");
+        String str1 = sc.nextLine();
+
+        System.out.print("Enter String 2: ");
+        String str2 = sc.nextLine();
+
+        // Swap using concatenation and substring
+        str1 = str1 + str2;                  // Combine both strings
+        str2 = str1.substring(0, str1.length() - str2.length()); // Extract original str1
+        str1 = str1.substring(str2.length());                     // Extract original str2
+
+        // Output
+        System.out.println("After swapping:");
+        System.out.println("String 1: " + str1);
+        System.out.println("String 2: " + str2);
+
+        sc.close();
+    }
+}
