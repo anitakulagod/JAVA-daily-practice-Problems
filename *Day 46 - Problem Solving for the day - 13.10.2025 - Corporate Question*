@@ -1,0 +1,37 @@
+//Write a Java program to find the sum of the first and last digit of a given number.
+//1.The first digit is the leftmost digit.
+//2.The last digit is the rightmost digit.
+//*Test Case:*
+//Input : 3457
+//Output : 10
+
+import java.util.Scanner;
+
+public class SumFirstLastDigit {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter a number: ");
+        int n = sc.nextInt();
+
+        int num = Math.abs(n);   // Ignore negative sign
+
+        // Last digit
+        int lastDigit = num % 10;
+
+        // Find first digit
+        int firstDigit = num;
+        while (firstDigit >= 10) {
+            firstDigit = firstDigit / 10;
+        }
+
+        // Sum of first and last digit
+        int sum = firstDigit + lastDigit;
+
+        // Output
+        System.out.println(sum);
+
+        sc.close();
+    }
+}
