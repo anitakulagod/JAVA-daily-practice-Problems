@@ -1,0 +1,72 @@
+//Write a function SmallLargeSum(array) which accepts the array as an argument or parameter, that performs the addition of the second largest element from the even location with the second largest element from an odd location?
+//*Rules:*
+//a. All the array elements are unique.
+//b. If the length of the array is 3 or less than 3, then return 0.
+//c. If Array is empty then return zero.
+
+//*Sample Test Case:*
+//Input:
+//6
+//3 2 1 7 5 4
+//Output:
+//7
+
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class SmallLargeSum {
+
+    // Function to calculate the sum
+    static int smallLargeSum(int[] arr, int n) {
+
+        // Rule checks
+        if (n == 0 || n <= 3) {
+            return 0;
+        }
+
+        ArrayList<Integer> evenIndex = new ArrayList<>();
+        ArrayList<Integer> oddIndex = new ArrayList<>();
+
+        // Separate elements based on index
+        for (int i = 0; i < n; i++) {
+            if (i % 2 == 0) {
+                evenIndex.add(arr[i]);
+            } else {
+                oddIndex.add(arr[i]);
+            }
+        }
+
+        // Sort both lists
+        Collections.sort(evenIndex);
+        Collections.sort(oddIndex);
+
+        // Get second largest values
+        int secondLargestEven = evenIndex.get(evenIndex.size() - 2);
+        int secondLargestOdd = oddIndex.get(oddIndex.size() - 2);
+
+        return secondLargestEven + secondLargestOdd;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Input size
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        // Input array elements
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // Function call
+        int result = smallLargeSum(arr, n);
+
+        // Output
+        System.out.println(result);
+
+        sc.close();
+    }
+}
