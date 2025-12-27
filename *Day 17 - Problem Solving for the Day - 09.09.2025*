@@ -1,0 +1,61 @@
+//In the Electricity Board, the billing system needs to decide if a customer is eligible for a subsidy on electricity bill.
+//*A customer gets Subsidy if:*
+//1.The customer is from a Rural Area AND
+//2.The customer’s electricity usage is below 100 units
+//*Additionally:*
+//If the customer is from an Urban Area OR usage is above 500 units, then they must pay an extra surcharge.
+//*Write a Java program using logical operators (&&, ||, !) to determine:*
+//1.Whether the customer gets a subsidy
+//2.Whether the customer needs to pay a surcharge
+//*Test Case 01 :*
+//Input :
+//Area: Rural
+//Units: 80
+//Output :
+//Customer is eligible for Subsidy.
+//No Surcharge.
+//*Test Case 02 :*
+//Input:
+//Area: Urban
+//Units: 120
+//Output :
+//Customer is NOT eligible for Subsidy.
+//Customer has to pay SURCHARGE.
+
+import java.util.Scanner;
+
+public class ElectricitySubsidyCheck {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input from user
+        System.out.print("Enter Area (Rural/Urban): ");
+        String area = sc.nextLine();
+
+        System.out.print("Enter Units Consumed: ");
+        int units = sc.nextInt();
+
+        // Logical conditions
+        boolean isRural = area.equalsIgnoreCase("Rural");
+        boolean isUrban = area.equalsIgnoreCase("Urban");
+
+        boolean eligibleForSubsidy = isRural && units < 100;
+        boolean needsSurcharge = isUrban || units > 500;
+
+        // Output results
+        if (eligibleForSubsidy) {
+            System.out.println("Customer is eligible for Subsidy.");
+        } else {
+            System.out.println("Customer is NOT eligible for Subsidy.");
+        }
+
+        if (needsSurcharge) {
+            System.out.println("Customer has to pay SURCHARGE.");
+        } else {
+            System.out.println("No Surcharge.");
+        }
+
+        sc.close();
+    }
+}
