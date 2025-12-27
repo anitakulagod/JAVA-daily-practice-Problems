@@ -1,0 +1,67 @@
+//*Friends’ Weekend Plan*
+//Three friends — Rahul, Sneha, and Arjun — are deciding what to do this weekend.
+
+1.If all three are free, they will go on a road trip.
+
+2.If two are free, they will go to a cricket match.
+
+3.If only one is free, that friend will just play video games at home.
+
+4.If none are free, everyone will just sleep at home.
+
+*Test Case 1 :*
+Input :
+rahulFree = true
+snehaFree = true
+arjunFree = false
+
+Output :
+Two friends are free! They will go to a cricket match.
+
+*Test Case 2 :*
+Input :
+rahulFree = false
+snehaFree = false
+arjunFree = false
+
+//Output :
+No one is free! Everyone will sleep at home.
+
+import java.util.Scanner;
+
+public class FriendsWeekendPlan {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input from user
+        System.out.print("Is Rahul free? (true/false): ");
+        boolean rahulFree = sc.nextBoolean();
+
+        System.out.print("Is Sneha free? (true/false): ");
+        boolean snehaFree = sc.nextBoolean();
+
+        System.out.print("Is Arjun free? (true/false): ");
+        boolean arjunFree = sc.nextBoolean();
+
+        // Count how many friends are free
+        int freeCount = 0;
+
+        if (rahulFree) freeCount++;
+        if (snehaFree) freeCount++;
+        if (arjunFree) freeCount++;
+
+        // Decision making
+        if (freeCount == 3) {
+            System.out.println("All three friends are free! They will go on a road trip.");
+        } else if (freeCount == 2) {
+            System.out.println("Two friends are free! They will go to a cricket match.");
+        } else if (freeCount == 1) {
+            System.out.println("Only one friend is free! That friend will play video games at home.");
+        } else {
+            System.out.println("No one is free! Everyone will sleep at home.");
+        }
+
+        sc.close();
+    }
+}
