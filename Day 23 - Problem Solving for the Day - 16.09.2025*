@@ -1,0 +1,59 @@
+//*Supermarket Discount Billing (Using for Loop)*
+*A supermarket applies the following discount rules on each item:*
+1.If the item price is greater than or equal to 500, apply 20% discount.
+2.If the item price is between 200 and 499, apply 10% discount.
+3.If the item price is less than 200, no discount is applied.
+Your task is to calculate the final total bill after discounts using a for loop.
+*Test Case 01 :*
+Input:
+Items = [600, 250, 150, 800]
+Output:
+Total Bill after discount = 1495
+*Test Case 02 :*
+Input :
+Items = [100, 300, 550]
+Output :
+Total Bill after discount = 810
+
+import java.util.Scanner;
+
+public class SupermarketDiscountBilling {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input number of items
+        System.out.print("Enter number of items: ");
+        int n = sc.nextInt();
+
+        int[] items = new int[n];
+        double totalBill = 0;
+
+        // Input item prices
+        System.out.println("Enter price of each item:");
+        for (int i = 0; i < n; i++) {
+            items[i] = sc.nextInt();
+        }
+
+        // Calculate total bill after discount
+        for (int i = 0; i < n; i++) {
+            double price = items[i];
+            double finalPrice;
+
+            if (price >= 500) {
+                finalPrice = price - (price * 0.20); // 20% discount
+            } else if (price >= 200) {
+                finalPrice = price - (price * 0.10); // 10% discount
+            } else {
+                finalPrice = price; // No discount
+            }
+
+            totalBill += finalPrice;
+        }
+
+        // Output
+        System.out.println("Total Bill after discount = " + (int) totalBill);
+
+        sc.close();
+    }
+}
