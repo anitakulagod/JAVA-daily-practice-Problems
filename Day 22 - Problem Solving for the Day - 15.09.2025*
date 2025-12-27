@@ -1,0 +1,62 @@
+//You are a teacher who wants to display the activity of the day based on a day number in a week.
+1 → Math Class
+2 → Science Class
+3 → English Class
+4 → Sport
+5 → Art & Craft
+6 → Field Trip
+7 → Holiday
+Use a switch statement to print the activity for the given day number.
+ *Test Case 01 :* 
+Input :
+day = 3
+output :
+
+Today's Activity: English Class
+ *Test Case 02 :* 
+Input :
+day = 6
+Output :
+Today's Activity: Field Trip
+
+import java.util.Scanner;
+
+public class ActivityOfTheDay {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input from user
+        System.out.print("Enter day number (1 to 7): ");
+        int day = sc.nextInt();
+
+        // Switch statement
+        switch (day) {
+            case 1:
+                System.out.println("Today's Activity: Math Class");
+                break;
+            case 2:
+                System.out.println("Today's Activity: Science Class");
+                break;
+            case 3:
+                System.out.println("Today's Activity: English Class");
+                break;
+            case 4:
+                System.out.println("Today's Activity: Sports");
+                break;
+            case 5:
+                System.out.println("Today's Activity: Art & Craft");
+                break;
+            case 6:
+                System.out.println("Today's Activity: Field Trip");
+                break;
+            case 7:
+                System.out.println("Today's Activity: Holiday");
+                break;
+            default:
+                System.out.println("Invalid day number! Please enter a value between 1 and 7.");
+        }
+
+        sc.close();
+    }
+}
