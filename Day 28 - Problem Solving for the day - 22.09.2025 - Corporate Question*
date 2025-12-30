@@ -1,0 +1,98 @@
+//Write a Java program to print the elements of an array in reverse order
+*Test Case 01 :*
+Input :
+arr = [10, 20, 30, 40, 50]
+Output :
+Array in reverse order:  
+50 40 30 20 10
+*Test Case 02 :*
+Input :
+arr = [7]
+Output :
+Array in reverse order:  7
+
+import java.util.Scanner;
+
+public class BusSeatBooking {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of seats in the bus: ");
+        int N = sc.nextInt();
+        sc.nextLine(); // consume newline
+
+        // Array to store seat status
+        String[] seats = new String[N];
+
+        // Initialize all seats as Empty
+        for (int i = 0; i < N; i++) {
+            seats[i] = "Empty";
+        }
+
+        int choice;
+
+        do {
+            System.out.println("\n===== Bus Seat Booking System =====");
+            System.out.println("1. View all seats");
+            System.out.println("2. Book a seat");
+            System.out.println("3. Cancel a booking");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+
+            choice = sc.nextInt();
+            sc.nextLine(); // consume newline
+
+            switch (choice) {
+
+                case 1:
+                    System.out.println("\nSeat Status:");
+                    for (int i = 0; i < N; i++) {
+                        System.out.println("Seat " + (i + 1) + ": " + seats[i]);
+                    }
+                    break;
+
+                case 2:
+                    System.out.print("Enter seat number to book (1-" + N + "): ");
+                    int bookSeat = sc.nextInt();
+                    sc.nextLine();
+
+                    if (bookSeat < 1 || bookSeat > N) {
+                        System.out.println("Invalid Seat Number!");
+                    } else if (!seats[bookSeat - 1].equals("Empty")) {
+                        System.out.println("Seat already booked!");
+                    } else {
+                        System.out.print("Enter passenger name: ");
+                        String name = sc.nextLine();
+                        seats[bookSeat - 1] = name;
+                        System.out.println("Seat booked successfully!");
+                    }
+                    break;
+
+                case 3:
+                    System.out.print("Enter seat number to cancel (1-" + N + "): ");
+                    int cancelSeat = sc.nextInt();
+
+                    if (cancelSeat < 1 || cancelSeat > N) {
+                        System.out.println("Invalid Seat Number!");
+                    } else if (seats[cancelSeat - 1].equals("Empty")) {
+                        System.out.println("Seat is already empty!");
+                    } else {
+                        seats[cancelSeat - 1] = "Empty";
+                        System.out.println("Booking cancelled successfully!");
+                    }
+                    break;
+
+                case 4:
+                    System.out.println("Exiting system... Thank you!");
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice!");
+            }
+
+        } while (choice != 4);
+
+        sc.close();
+    }
+}
