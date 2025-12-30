@@ -1,0 +1,43 @@
+//Write a Java program to check whether two given strings are rotations of each other.
+*Note :*
+ 1.Two strings are considered rotations if one string can be obtained by rotating the other string’s characters.
+ 2.The comparison should be case-sensitive.
+ 3.If the strings are rotations, print “Strings are rotations of each other”, otherwise print “Strings are not rotations of each other”.
+*Test Case :*
+Input :
+String 1: ABCD  
+String 2: CDAB
+Output :
+Strings are rotations of each other
+
+import java.util.Scanner;
+
+public class StringRotationCheck {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter String 1: ");
+        String str1 = sc.nextLine();
+
+        System.out.print("Enter String 2: ");
+        String str2 = sc.nextLine();
+
+        // Check lengths first
+        if (str1.length() != str2.length()) {
+            System.out.println("Strings are not rotations of each other");
+        } 
+        else {
+            // Concatenate first string with itself
+            String combined = str1 + str1;
+
+            if (combined.contains(str2)) {
+                System.out.println("Strings are rotations of each other");
+            } else {
+                System.out.println("Strings are not rotations of each other");
+            }
+        }
+
+        sc.close();
+    }
+}
