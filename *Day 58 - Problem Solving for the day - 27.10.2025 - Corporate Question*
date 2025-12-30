@@ -1,0 +1,52 @@
+//Write a Java program to reverse each word in a given string while maintaining the original order of the words.
+*Note :*
+1.The spaces between words should remain unchanged.
+2.Punctuation marks should remain attached to their respective words.
+3.The program should handle multiple spaces between words correctly.
+*Test Case 01 :*
+Input :
+Hello World
+Output :
+olleH dlroW
+*Test Case 02 :*
+Input :
+Java  Programming Language
+Output :
+avaJ  gnimmargorP egaugnaL
+
+import java.util.Scanner;
+
+public class ReverseEachWord {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter a sentence:");
+        String input = sc.nextLine();
+
+        StringBuilder result = new StringBuilder();
+        StringBuilder word = new StringBuilder();
+
+        for (int i = 0; i < input.length(); i++) {
+            char ch = input.charAt(i);
+
+            // If character is not a space, build the word
+            if (ch != ' ') {
+                word.append(ch);
+            } 
+            // If space encountered, reverse current word and reset
+            else {
+                result.append(word.reverse());
+                word.setLength(0); // clear word
+                result.append(ch); // append space as it is
+            }
+        }
+
+        // Reverse and append last word
+        result.append(word.reverse());
+
+        System.out.println(result.toString());
+
+        sc.close();
+    }
+}
