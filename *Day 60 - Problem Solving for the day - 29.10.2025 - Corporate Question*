@@ -1,0 +1,29 @@
+//Write a Java program to print the sum of all even numbers and odd numbers separately between 1 and 50.Use a loop (for or while) to iterate through numbers from 1 to 50.
+*Calculate:*
+A.The sum of all even numbers between 1 and 50.
+B.The sum of all odd numbers between 1 and 50.
+C.Print both sums clearly in the output.
+*Output :*
+Sum of even numbers between 1 and 50: 650
+Sum of odd numbers between 1 and 50: 625
+
+public class SumEvenOdd {
+    public static void main(String[] args) {
+
+        int evenSum = 0;
+        int oddSum = 0;
+
+        // Loop from 1 to 50
+        for (int i = 1; i <= 50; i++) {
+
+            if (i % 2 == 0) {
+                evenSum += i;
+            } else {
+                oddSum += i;
+            }
+        }
+
+        System.out.println("Sum of even numbers between 1 and 50: " + evenSum);
+        System.out.println("Sum of odd numbers between 1 and 50: " + oddSum);
+    }
+}
