@@ -1,0 +1,36 @@
+//Write a Java program that takes a positive integer n as input and returns the sum of the first and last digit of the number 
+ *Test Case 1:* 
+Input: 12345  
+Output: 6
+ *Test Case 2:* 
+Input: 9  
+Output: 18
+ *Test Case 3:* 
+Input: 50234  
+Output: 9
+
+import java.util.Scanner;
+
+public class SumFirstLastDigit {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a positive number: ");
+        int n = sc.nextInt();
+
+        int lastDigit = n % 10;   // last digit
+        int firstDigit = n;
+
+        // find first digit
+        while (firstDigit >= 10) {
+            firstDigit = firstDigit / 10;
+        }
+
+        int sum = firstDigit + lastDigit;
+
+        System.out.println("Sum of first and last digit: " + sum);
+
+        sc.close();
+    }
+}
