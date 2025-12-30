@@ -1,0 +1,68 @@
+//A company wants to calculate a bonus for employees based on their performance rating.
+*Write a Java program that:*
+1.Takes employee’s base salary and performance rating (Excellent, Good, Average, Poor) as input.
+2.Uses if-else if statements to calculate the adjusted salary and bonus:
+   - Excellent → 20% increase and ₹10,000 bonus
+   - Good → 10% increase and ₹5,000 bonus
+   - Average → 5% increase and ₹2,000 bonus
+   - Poor → No increase, no bonus
+3.Prints the final salary and bonus.
+Input:
+ - Base salary (double)
+ - Performance rating (String)
+Output:
+ - Adjusted salary
+ - Bonus
+*Test Case :*
+Input:
+Base Salary: 50000
+Performance Rating: Excellent
+Output :
+Adjusted Salary: 60000
+Bonus: 10000
+
+import java.util.Scanner;
+
+public class EmployeeBonusCalculator {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Base Salary: ");
+        double baseSalary = sc.nextDouble();
+        sc.nextLine(); // consume newline
+
+        System.out.print("Enter Performance Rating (Excellent/Good/Average/Poor): ");
+        String rating = sc.nextLine();
+
+        double adjustedSalary = baseSalary;
+        int bonus = 0;
+
+        if (rating.equalsIgnoreCase("Excellent")) {
+            adjustedSalary = baseSalary + (baseSalary * 0.20);
+            bonus = 10000;
+        }
+        else if (rating.equalsIgnoreCase("Good")) {
+            adjustedSalary = baseSalary + (baseSalary * 0.10);
+            bonus = 5000;
+        }
+        else if (rating.equalsIgnoreCase("Average")) {
+            adjustedSalary = baseSalary + (baseSalary * 0.05);
+            bonus = 2000;
+        }
+        else if (rating.equalsIgnoreCase("Poor")) {
+            adjustedSalary = baseSalary;
+            bonus = 0;
+        }
+        else {
+            System.out.println("Invalid Performance Rating!");
+            sc.close();
+            return;
+        }
+
+        System.out.println("Adjusted Salary: " + (int)adjustedSalary);
+        System.out.println("Bonus: " + bonus);
+
+        sc.close();
+    }
+}
