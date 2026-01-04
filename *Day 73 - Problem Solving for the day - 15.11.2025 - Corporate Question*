@@ -1,0 +1,80 @@
+//A data analytics company is processing user activity numbers stored in an integer array.For every dataset, they need to identify two important metrics:
+1.The Second Smallest activity value
+2.The Second Largest activity value
+These values help the company analyze the dataset by ignoring extreme outliers (minimum and maximum).
+You are assigned to write a Java program to compute these two values.Given an integer array arr[], find:Second,Largest element
+_*Note:*_
+A. Consider only distinct values.
+B. If second smallest OR second largest does not exist, print:"Second smallest and second largest do not exist"
+C. Solve in O(n) time 
+D. Assume array may contain duplicates.
+*Test Case 01 :*
+Input : arr = {12, 5, 7, 25, 18, 7, 12}
+Output : 	
+Second Smallest : 7
+Second Largest  : 18
+*Test Case 02 :*
+Input : arr = {40, 40, 40, 40}
+Output : Second smallest and second largest do not exist
+*Test Case 03 :*
+Input : arr = {9}
+Output : Second smallest and second largest do not exist
+
+import java.util.Scanner;
+
+public class SecondSmallestLargest {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input array size
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        // If array size is less than 2
+        if (n < 2) {
+            System.out.println("Second smallest and second largest do not exist");
+            return;
+        }
+
+        int[] arr = new int[n];
+
+        // Input array elements
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        int smallest = Integer.MAX_VALUE;
+        int secondSmallest = Integer.MAX_VALUE;
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+
+        for (int num : arr) {
+
+            // Find smallest and second smallest
+            if (num < smallest) {
+                secondSmallest = smallest;
+                smallest = num;
+            } else if (num > smallest && num < secondSmallest) {
+                secondSmallest = num;
+            }
+
+            // Find largest and second largest
+            if (num > largest) {
+                secondLargest = largest;
+                largest = num;
+            } else if (num < largest && num > secondLargest) {
+                secondLargest = num;
+            }
+        }
+
+        // Check if valid second smallest and largest exist
+        if (secondSmallest == Integer.MAX_VALUE || secondLargest == Integer.MIN_VALUE) {
+            System.out.println("Second smallest and second largest do not exist");
+        } else {
+            System.out.println("Second Smallest : " + secondSmallest);
+            System.out.println("Second Largest  : " + secondLargest);
+        }
+    }
+}
