@@ -1,0 +1,45 @@
+//Write a Java program to reverse the words in a given sentence.
+The order of the words should be reversed, but the characters within each word should remain in the same order.
+ *Test Case 01 :* 
+Input :  "MixedCASE Words Here "
+Output: "Here Words MixedCASE"
+ *Test Case 02 :* 
+Input : "     Hello    World  "
+Output : "World Hello"
+
+import java.util.Scanner;
+
+public class ReverseWordsInSentence {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input sentence
+        System.out.print("Enter a sentence: ");
+        String sentence = sc.nextLine();
+
+        // Remove leading/trailing spaces and split by one or more spaces
+        String[] words = sentence.trim().split("\\s+");
+
+        // Handle empty input after trimming
+        if (words.length == 1 && words[0].equals("")) {
+            System.out.println("Output: ");
+            return;
+        }
+
+        // Reverse word order
+        StringBuilder result = new StringBuilder();
+        for (int i = words.length - 1; i >= 0; i--) {
+            result.append(words[i]);
+            if (i != 0) {
+                result.append(" ");
+            }
+        }
+
+        // Output
+        System.out.println("Output: " + result.toString());
+
+        sc.close();
+    }
+}
