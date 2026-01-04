@@ -1,0 +1,95 @@
+//*Find the Middle Element of a Singly Linked List*
+Write a Java program to find and print the middle element of a singly linked list.
+*Note :*
+a.You must traverse the list only once (use fast & slow pointer approach).
+b.If the linked list is empty, print "List is empty".
+c.If there are even number of nodes, return the second middle element.
+Example: 1 → 2 → 3 → 4 → Output: 3
+*Test Case 01 :*
+Input: 8 → 9
+Output : 9 
+*Test Case 02 :*
+Input: 4 → 4 → 4 → 4 → 4
+Output : 4 
+*Test Case 03 :*
+Input: 1 → 2 → 3 → 4 → 5
+Output : 3
+
+import java.util.Scanner;
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class FindMiddleLinkedList {
+
+    // Function to find middle element
+    public static void findMiddle(Node head) {
+
+        // Empty list case
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node slow = head;
+        Node fast = head;
+
+        // Fast moves 2 steps, slow moves 1 step
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // Slow will be at middle
+        System.out.println(slow.data);
+    }
+
+    // Function to display linked list (optional)
+    public static void display(Node head) {
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data);
+            if (temp.next != null) {
+                System.out.print(" → ");
+            }
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of nodes: ");
+        int n = sc.nextInt();
+
+        // Empty list
+        if (n == 0) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        // Create linked list
+        System.out.print("Enter node values: ");
+        Node head = new Node(sc.nextInt());
+        Node temp = head;
+
+        for (int i = 1; i < n; i++) {
+            temp.next = new Node(sc.nextInt());
+            temp = temp.next;
+        }
+
+        // Find and print middle element
+        findMiddle(head);
+
+        sc.close();
+    }
+}
