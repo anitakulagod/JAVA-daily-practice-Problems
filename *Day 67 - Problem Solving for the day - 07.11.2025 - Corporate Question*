@@ -1,0 +1,87 @@
+//Write a Java program to find the second largest and second smallest distinct elements in an integer array.
+If the array does not contain at least two distinct elements, print an appropriate message.
+ *Test Case 1:* 
+Input:
+arr = [12, 5, 7, 5, 22, 22, 9, 15]
+Output:
+Second smallest element: 7
+Second largest element: 15
+ *Test Case 02 :* 
+Input:
+arr = [8, 8, 8, 8]  
+ Output:
+No distinct second smallest element.
+No distinct second largest element.
+
+import java.util.Scanner;
+
+public class SecondSmallestLargest {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input array size
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        // Check for minimum size
+        if (n < 2) {
+            System.out.println("No distinct second smallest element.");
+            System.out.println("No distinct second largest element.");
+            return;
+        }
+
+        int[] arr = new int[n];
+
+        // Input array elements
+        System.out.print("Enter array elements: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        Integer smallest = null, secondSmallest = null;
+        Integer largest = null, secondLargest = null;
+
+        // Traverse array once
+        for (int i = 0; i < n; i++) {
+
+            int value = arr[i];
+
+            // Find smallest and second smallest
+            if (smallest == null || value < smallest) {
+                if (smallest != null && value != smallest) {
+                    secondSmallest = smallest;
+                }
+                smallest = value;
+            } else if (value != smallest && (secondSmallest == null || value < secondSmallest)) {
+                secondSmallest = value;
+            }
+
+            // Find largest and second largest
+            if (largest == null || value > largest) {
+                if (largest != null && value != largest) {
+                    secondLargest = largest;
+                }
+                largest = value;
+            } else if (value != largest && (secondLargest == null || value > secondLargest)) {
+                secondLargest = value;
+            }
+        }
+
+        // Output results
+        if (secondSmallest == null) {
+            System.out.println("No distinct second smallest element.");
+        } else {
+            System.out.println("Second smallest element: " + secondSmallest);
+        }
+
+        if (secondLargest == null) {
+            System.out.println("No distinct second largest element.");
+        } else {
+            System.out.println("Second largest element: " + secondLargest);
+        }
+
+        sc.close();
+    }
+}
