@@ -1,0 +1,44 @@
+//Move Zeroes - Leetcode no : 283
+
+import java.util.Scanner;
+
+public class MoveZeroes {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Read array size
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] nums = new int[n];
+
+        // Read array elements
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+
+        int k = 0; // Pointer for non-zero elements
+
+        // Move non-zero elements forward
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != 0) {
+                nums[k] = nums[i];
+                k++;
+            }
+        }
+
+        // Fill remaining positions with zero
+        while (k < n) {
+            nums[k] = 0;
+            k++;
+        }
+
+        // Output result
+        System.out.print("Array after moving zeroes: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(nums[i] + " ");
+        }
+    }
+}
