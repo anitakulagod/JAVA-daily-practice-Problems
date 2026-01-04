@@ -1,0 +1,51 @@
+//*Remove a Specific Character From a String*
+You are given a string S and a character C.Your task is to remove all occurrences of the character C from the string S and print the updated string.
+If the character does not exist in the string, print the original string.
+*Test Case 01 :*
+Input:
+S = "datastructures"
+C = 't'
+Output:
+datasrucures
+*Test Case 02 :*
+Input:
+S = "aaaaaa"
+C = 'a'
+Output :
+""
+
+import java.util.Scanner;
+
+public class RemoveSpecificCharacter {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input string
+        System.out.print("Enter the string: ");
+        String s = sc.nextLine();
+
+        // Input character
+        System.out.print("Enter the character to remove: ");
+        char c = sc.next().charAt(0);
+
+        StringBuilder result = new StringBuilder();
+        boolean found = false;
+
+        // Traverse the string
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) != c) {
+                result.append(s.charAt(i));
+            } else {
+                found = true;
+            }
+        }
+
+        // Output result
+        if (found) {
+            System.out.println("Updated string: " + result.toString());
+        } else {
+            System.out.println("Updated string: " + s);
+        }
+    }
+}
