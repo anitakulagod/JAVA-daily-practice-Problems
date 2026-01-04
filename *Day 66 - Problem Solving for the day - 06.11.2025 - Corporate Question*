@@ -1,0 +1,108 @@
+Write a Java program to *delete all the nodes of a singly linked list and free the memory* allocated to each node.
+*Note :*
+a.You are given a singly linked list.
+b.Your task is to delete every node in the list such that after deletion, the head of the list becomes null.
+c.The program must handle the following cases:
+    1.If the list is empty, print "List is already empty".
+    2.If the list is not empty, delete all nodes and print "Linked list deleted successfully".
+d.You should display the list before and after deletion
+*Test Case 1 :*
+Input : Linked List: 10 → 20 → 30 → 40 → 50
+Output : 
+Original Linked List:
+10 → 20 → 30 → 40 → 50
+Deleting the linked list
+Linked list deleted successfully.
+After Deletion:
+List is empty
+*Test Case 2 :*
+Input : Linked List: (empty)
+Output : List is already empty
+
+import java.util.Scanner;
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class DeleteLinkedList {
+
+    // Function to display linked list
+    public static void display(Node head) {
+        if (head == null) {
+            System.out.println("List is empty");
+            return;
+        }
+
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data);
+            if (temp.next != null) {
+                System.out.print(" → ");
+            }
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    // Function to delete entire linked list
+    public static Node deleteList(Node head) {
+
+        if (head == null) {
+            System.out.println("List is already empty");
+            return null;
+        }
+
+        Node current = head;
+        while (current != null) {
+            Node nextNode = current.next;
+            current.next = null; // help garbage collection
+            current = nextNode;
+        }
+
+        System.out.println("Linked list deleted successfully.");
+        return null; // head becomes null
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of nodes: ");
+        int n = sc.nextInt();
+
+        Node head = null;
+
+        // Create linked list if not empty
+        if (n > 0) {
+            System.out.print("Enter node values: ");
+            head = new Node(sc.nextInt());
+            Node temp = head;
+
+            for (int i = 1; i < n; i++) {
+                temp.next = new Node(sc.nextInt());
+                temp = temp.next;
+            }
+        }
+
+        // Display original list
+        System.out.println("\nOriginal Linked List:");
+        display(head);
+
+        // Delete linked list
+        System.out.println("\nDeleting the linked list");
+        head = deleteList(head);
+
+        // Display after deletion
+        System.out.println("\nAfter Deletion:");
+        display(head);
+
+        sc.close();
+    }
+}
