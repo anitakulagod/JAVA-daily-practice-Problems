@@ -1,0 +1,48 @@
+//Write a Java program to count the number of even and odd digits in a given number.
+*Note :*
+1.Input: A positive integer number
+2.The program should count:
+  - Total number of even digits
+  - Total number of odd digits
+3.Output the count of even and odd digits separately
+4.Handle single-digit cases correctly
+*Test Case:*
+Input : 54872
+Output : 
+Even digits count: 3
+Odd digits count: 2
+
+import java.util.Scanner;
+
+public class CountEvenOddDigits {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input from user
+        System.out.print("Enter a number: ");
+        int num = sc.nextInt();
+
+        int evenCount = 0;
+        int oddCount = 0;
+
+        // Handle number digit by digit
+        while (num > 0) {
+            int digit = num % 10;
+
+            if (digit % 2 == 0) {
+                evenCount++;
+            } else {
+                oddCount++;
+            }
+
+            num = num / 10;
+        }
+
+        // Output
+        System.out.println("Even digits count: " + evenCount);
+        System.out.println("Odd digits count: " + oddCount);
+
+        sc.close();
+    }
+}
