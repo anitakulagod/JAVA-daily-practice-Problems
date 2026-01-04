@@ -1,0 +1,61 @@
+//*Check if Two Strings Differ by Exactly One Character*
+You are given two strings S1 and S2.Your task is to determine whether the two strings differ by exactly one character.
+Two strings differ by exactly one character if:
+  1.Both strings must be of the same length
+  2.Exactly one position has a different character
+  3.All the other characters are the same
+Return "YES" if they differ by exactly one character, otherwise return "NO".
+*Test Case 01 :*
+Input : 
+S1 = "test"
+S2 = "tent"
+Output : Yes
+*Test Case 02 :*
+Input:
+S1 = "abcd"
+S2 = "abxcd"
+Output : NO
+
+import java.util.Scanner;
+
+public class OneCharacterDifference {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input strings
+        System.out.print("Enter first string (S1): ");
+        String s1 = sc.nextLine();
+
+        System.out.print("Enter second string (S2): ");
+        String s2 = sc.nextLine();
+
+        // Length check
+        if (s1.length() != s2.length()) {
+            System.out.println("NO");
+            return;
+        }
+
+        int diffCount = 0;
+
+        // Compare characters
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(i)) {
+                diffCount++;
+            }
+
+            // Early exit if more than one difference
+            if (diffCount > 1) {
+                System.out.println("NO");
+                return;
+            }
+        }
+
+        // Final check
+        if (diffCount == 1) {
+            System.out.println("YES");
+        } else {
+            System.out.println("NO");
+        }
+    }
+}
