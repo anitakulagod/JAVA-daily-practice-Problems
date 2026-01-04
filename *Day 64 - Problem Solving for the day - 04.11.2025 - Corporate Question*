@@ -1,0 +1,103 @@
+//Write a Java program to remove all duplicate nodes from a sorted singly linked list.
+*Note:*
+1.The linked list is sorted in non-decreasing order.
+2.You must modify the list so that each element appears only once.
+3 .Do not create a new list — perform removal in the same list.
+4.Handle empty and single-node list cases.
+*Test Case 01 :*
+Input: 1 → 1 → 2 → 2 → 3 → 3 → 3 → 4
+Output: 1 → 2 → 3 → 4
+*Test Case 02 :*
+Input: 5 → 5 → 5 → 5
+Output: 5
+*Test Case 03 :*
+Input: empty list
+Output: List is empty.
+
+import java.util.Scanner;
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class RemoveDuplicatesSortedList {
+
+    // Function to remove duplicates from sorted linked list
+    public static Node removeDuplicates(Node head) {
+
+        // Empty list or single node
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        Node current = head;
+
+        while (current.next != null) {
+            if (current.data == current.next.data) {
+                // Skip duplicate node
+                current.next = current.next.next;
+            } else {
+                current = current.next;
+            }
+        }
+
+        return head;
+    }
+
+    // Function to display linked list
+    public static void display(Node head) {
+
+        if (head == null) {
+            System.out.println("List is empty.");
+            return;
+        }
+
+        Node temp = head;
+        while (temp != null) {
+            System.out.print(temp.data);
+            if (temp.next != null) {
+                System.out.print(" → ");
+            }
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of nodes: ");
+        int n = sc.nextInt();
+
+        // Empty list case
+        if (n == 0) {
+            System.out.println("List is empty.");
+            return;
+        }
+
+        // Create sorted linked list
+        System.out.print("Enter node values (sorted): ");
+        Node head = new Node(sc.nextInt());
+        Node temp = head;
+
+        for (int i = 1; i < n; i++) {
+            temp.next = new Node(sc.nextInt());
+            temp = temp.next;
+        }
+
+        // Remove duplicates
+        head = removeDuplicates(head);
+
+        // Display updated list
+        display(head);
+
+        sc.close();
+    }
+}
