@@ -1,0 +1,84 @@
+//Write a Java program to check whether a given Singly Linked List is sorted in non-decreasing order or not.
+*Test Case 01 :*
+Input:
+Linked List: 1 → 2 → 2 → 4 → 5
+Output:
+The linked list is sorted.
+*Test Case 02 :*
+Input:
+Linked List: 10 → 5 → 8 → 12
+Output:
+The linked list is not sorted.
+*Test Case 03 :*
+Input:
+Linked List: 7
+Output:
+The linked list is sorted.
+
+import java.util.Scanner;
+
+class Node {
+    int data;
+    Node next;
+
+    Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+public class CheckSortedLinkedList {
+
+    // Function to check if linked list is sorted
+    public static boolean isSorted(Node head) {
+
+        // Empty list or single node is always sorted
+        if (head == null || head.next == null) {
+            return true;
+        }
+
+        Node current = head;
+
+        while (current.next != null) {
+            if (current.data > current.next.data) {
+                return false;
+            }
+            current = current.next;
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Number of nodes
+        System.out.print("Enter number of nodes: ");
+        int n = sc.nextInt();
+
+        if (n <= 0) {
+            System.out.println("The linked list is sorted.");
+            return;
+        }
+
+        // Creating linked list
+        System.out.print("Enter node values: ");
+        Node head = new Node(sc.nextInt());
+        Node temp = head;
+
+        for (int i = 1; i < n; i++) {
+            temp.next = new Node(sc.nextInt());
+            temp = temp.next;
+        }
+
+        // Check sorted or not
+        if (isSorted(head)) {
+            System.out.println("The linked list is sorted.");
+        } else {
+            System.out.println("The linked list is not sorted.");
+        }
+
+        sc.close();
+    }
+}
