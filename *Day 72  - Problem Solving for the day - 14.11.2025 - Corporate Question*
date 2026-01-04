@@ -1,0 +1,62 @@
+//_*Note : Please do practice this question - Priority Question*_ 
+Write a java program in array to Perform right rotation by K positions.
+*Test Case 1 :*
+Input :{1,2,3,4,5}, k = 2
+Output :{4,5,1,2,3}
+*Test Case 2 :*
+Input:{10,20,30} , K = 1
+Output : {30,10,20}
+
+import java.util.Scanner;
+
+public class RightRotateArray {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input array size
+        System.out.print("Enter array size: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        // Input array elements
+        System.out.println("Enter array elements:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // Input K value
+        System.out.print("Enter value of K: ");
+        int k = sc.nextInt();
+
+        // Normalize K
+        k = k % n;
+
+        // Step 1: Reverse entire array
+        reverse(arr, 0, n - 1);
+
+        // Step 2: Reverse first K elements
+        reverse(arr, 0, k - 1);
+
+        // Step 3: Reverse remaining elements
+        reverse(arr, k, n - 1);
+
+        // Output result
+        System.out.print("Array after right rotation: ");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+
+    // Reverse helper function
+    static void reverse(int[] arr, int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
+    }
+}
