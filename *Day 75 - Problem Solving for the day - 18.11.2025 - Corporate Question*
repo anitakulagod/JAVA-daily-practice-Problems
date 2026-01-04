@@ -1,0 +1,36 @@
+//Write a Java program that takes a non-negative integer as input and prints each digit of the number in words
+*Test Case 01 :*
+Input: 123
+Output: One Two Three
+*Test Case 02 :*
+Input: 405
+Output: Four Zero Five
+*Test Case 03 :*
+Input: 0
+Output: Zero
+
+import java.util.Scanner;
+
+public class DigitInWords {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input number
+        System.out.print("Enter a non-negative integer: ");
+        String number = sc.nextLine();
+
+        // Words for digits
+        String[] words = {
+            "Zero", "One", "Two", "Three", "Four",
+            "Five", "Six", "Seven", "Eight", "Nine"
+        };
+
+        // Convert each digit to word
+        for (int i = 0; i < number.length(); i++) {
+            char ch = number.charAt(i);
+            int digit = ch - '0';
+            System.out.print(words[digit] + " ");
+        }
+    }
+}
