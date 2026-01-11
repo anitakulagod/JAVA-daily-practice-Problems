@@ -1,0 +1,34 @@
+// Leetcode Number : 1816. Truncate Sentence
+
+import java.util.*;
+
+public class TruncateSentence {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input sentence
+        String s = sc.nextLine();
+
+        // Input k
+        int k = sc.nextInt();
+
+        // Split sentence into words
+        String[] words = s.split(" ");
+
+        StringBuilder result = new StringBuilder();
+
+        // Append first k words
+        for (int i = 0; i < k && i < words.length; i++) {
+            result.append(words[i]);
+            if (i < k - 1) {
+                result.append(" ");
+            }
+        }
+
+        // Output result
+        System.out.println(result.toString());
+
+        sc.close();
+    }
+}
