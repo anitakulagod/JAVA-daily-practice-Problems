@@ -1,0 +1,116 @@
+//A software company is developing an automated code-highlighting tool for internal IDE presentations.The tool must rearrange a set of letters to ensure maximum clarity during display.Each letter has an associated priority score indicating its importance.Your task is to rearrange the letters such that higher-priority letters appear as early as possible.
+*Rules*
+1.Each letter must appear exactly once in the final arrangement.
+2.Letters can be reordered freely.
+3.Letters with higher priority must appear earlier.
+4.If two letters have the same priority, their relative order from the input must be preserved.
+5.Once placed, a letter cannot be moved.
+6.Compute only:
+   - The final rearranged string
+   - The total priority score
+Note: The total priority score is the sum of all priority values. There is no position-based weighting.
+Input Format : 
+N
+C1 P1
+C2 P2
+...
+CN PN
+Where:
+N → Number of letters
+Ci → Character (uppercase or lowercase English letter)
+Pi → Priority score
+Output Format : Rearranged_String Total_Priority
+*Constraints*
+- 1 ≤ N ≤ 10^5
+- 1 ≤ Pi ≤ 10^6
+- Each character appears exactly once
+*Test Case 01 :*
+Input:
+5
+A 10
+B 30
+C 20
+D 40
+E 15
+Output :
+DBCEA 115
+*Test Case 02 :*
+Input :
+6
+X 10
+Y 30
+Z 20
+W 30
+V 15
+U 10
+Output :
+YWZVXU 125
+*Test Case 03 :*
+Input:
+4
+P 40
+Q 30
+R 20
+S 10
+Output :
+PQRS 100
+*Test Case 04 :*
+Input :
+1
+A 50
+Output :
+A 50
+*Test Case 05 :*
+Input :
+4
+
+import java.util.*;
+
+public class PriorityRearrangement {
+
+    static class Letter {
+        char ch;
+        int priority;
+        int index;
+
+        Letter(char ch, int priority, int index) {
+            this.ch = ch;
+            this.priority = priority;
+            this.index = index;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+
+        List<Letter> list = new ArrayList<>();
+        long totalPriority = 0;
+
+        for (int i = 0; i < n; i++) {
+            char ch = sc.next().charAt(0);
+            int p = sc.nextInt();
+            list.add(new Letter(ch, p, i));
+            totalPriority += p;
+        }
+
+        // Stable sort by priority (descending)
+        Collections.sort(list, (a, b) -> b.priority - a.priority);
+
+        StringBuilder result = new StringBuilder();
+        for (Letter l : list) {
+            result.append(l.ch);
+        }
+
+        System.out.println(result + " " + totalPriority);
+        sc.close();
+    }
+}
+
+M 20
+N 20
+O 20
+P 20
+Output :
+MNOP 80
