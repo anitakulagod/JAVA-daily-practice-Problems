@@ -1,0 +1,56 @@
+//Jack is always excited about sunday. It is favourite day, when he gets to play all day. And goes to cycling with his friends. 
+So every time when the months starts he counts the number of sundays he will get to enjoy. 
+Considering the month can start with any day, be it Sunday, Monday…. Or so on.Count the number of Sunday jack will get within n number of days.
+*Test Case  1:*
+*Input* 
+mon
+13  
+*Output :*
+1  
+*Test Case 2 :*
+*Input :*
+sat   
+7     
+*Output :*
+1
+
+import java.util.*;
+
+public class CountSundays {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Read starting day
+        String startDay = sc.nextLine().toLowerCase();
+
+        // Read number of days
+        int n = sc.nextInt();
+
+        int start = getDayNumber(startDay);
+        int sundayCount = 0;
+
+        // Count Sundays
+        for (int i = 0; i < n; i++) {
+            if ((start + i) % 7 == 0) {
+                sundayCount++;
+            }
+        }
+
+        // Output
+        System.out.println(sundayCount);
+
+        sc.close();
+    }
+
+    // Method to convert day to number
+    static int getDayNumber(String day) {
+        if (day.equals("sun")) return 0;
+        if (day.equals("mon")) return 1;
+        if (day.equals("tue")) return 2;
+        if (day.equals("wed")) return 3;
+        if (day.equals("thu")) return 4;
+        if (day.equals("fri")) return 5;
+        return 6; // sat
+    }
+}
