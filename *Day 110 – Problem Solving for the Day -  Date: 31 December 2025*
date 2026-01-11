@@ -1,0 +1,87 @@
+//Jack is a sports teacher at St. Patrick’s School. He lines up N students in a row.Each student wears a jersey numbered from 1 to N, and initially, students stand in increasing order of their jersey numbers (from left to right).
+At each position, there is a fixed board with a number written on it.These board numbers form a permutation of integers from 1 to N (each number appears exactly once).
+*Movement Rule*
+After each beat of the drum:
+1.Every student moves to the position indicated by the number written on the board at their current position.
+2.Board positions are fixed and never move.
+This movement repeats after every beat.	
+Determine the minimum number of drum beats required for all students to return to their original positions 
+(same order as at the start).
+*Input Format*
+An integer N — number of students
+An integer array B[ ] of size N — board numbers (1-based indexing)
+*Output Format*
+Print a single integer — the number of beats required to restore the original arrangement.
+*Test Case 01 :*
+N = 3
+B = [1, 2, 3]
+Output :
+1
+*Test Case 02 :*
+N = 5
+B = [2, 3, 1, 5, 4]
+Output :
+6
+*Test Case 03 :*
+N = 4
+B = [2, 1, 4, 3]
+Output :
+2
+*Test Case 04 :*
+N = 1
+B = [1]
+Output :
+1
+
+import java.util.*;
+
+public class DrumBeats {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Read number of students
+        int N = sc.nextInt();
+
+        int[] B = new int[N];
+        for (int i = 0; i < N; i++) {
+            B[i] = sc.nextInt() - 1; // convert to 0-based index
+        }
+
+        boolean[] visited = new boolean[N];
+        long result = 1;
+
+        // Find cycles
+        for (int i = 0; i < N; i++) {
+            if (!visited[i]) {
+                int count = 0;
+                int current = i;
+
+                while (!visited[current]) {
+                    visited[current] = true;
+                    current = B[current];
+                    count++;
+                }
+
+                if (count > 0) {
+                    result = lcm(result, count);
+                }
+            }
+        }
+
+        System.out.println(result);
+        sc.close();
+    }
+
+    // Method to calculate LCM
+    static long lcm(long a, long b) {
+        return (a * b) / gcd(a, b);
+    }
+
+    // Method to calculate GCD
+    static long gcd(long a, long b) {
+        if (b == 0)
+            return a;
+        return gcd(b, a % b);
+    }
+}
