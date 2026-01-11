@@ -1,0 +1,44 @@
+You are given a string S and a character C.Write a program to replace all spaces in the string with the given character.If the string contains no spaces, print the string unchanged.
+Preserve all other characters exactly as they appear.
+*Test Case 01:*
+Input  :
+I love programming
+-
+Output :
+I-love-programming
+*Test Case 02:*
+Input  :
+OpenAI
+-
+Output :
+OpenAI
+
+import java.util.*;
+
+public class ReplaceSpaces {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input string
+        String s = sc.nextLine();
+
+        // Input replacement character
+        char c = sc.next().charAt(0);
+
+        StringBuilder sb = new StringBuilder();
+
+        // Traverse each character
+        for (char ch : s.toCharArray()) {
+            if (ch == ' ') {
+                sb.append(c); // replace space
+            } else {
+                sb.append(ch); // keep original
+            }
+        }
+
+        System.out.println(sb.toString());
+
+        sc.close();
+    }
+}
