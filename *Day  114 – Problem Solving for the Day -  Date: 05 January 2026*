@@ -1,0 +1,89 @@
+//Andy wants to go on a vacation to de-stress himself. He plans to take one continuous trip to an island.There are N consecutive days, numbered from 1 to N.
+Andy already has M obligations, each scheduled on a specific day Di.If Andy has an obligation on a day, he cannot take vacation on that day unless he cancels it.
+Andy is allowed to cancel at most K obligations.Your task is to determine the maximum number of consecutive days Andy can take vacation by canceling at most K obligations.
+Input Format
+-The first line contains an integer N — total number of days
+-The second line contains an integer M — total number of obligations
+-The third line contains an integer K — maximum obligations that can be canceled
+-The next M lines each contain an integer Di, representing a day with an obligation
+Output Format
+Print a single integer representing the maximum consecutive vacation days
+*Test Case 01 :*
+Input :
+N = 10
+M = 3
+K = 1
+Obligations:
+3
+6
+8
+Output :5
+*Test Case 02 :*
+Input :
+N = 7
+M = 2
+K = 0
+Obligations:
+2
+5
+Output : 2
+*Test Case 03 :*
+Input :
+N = 10
+M = 4
+K = 2
+Obligations:
+2
+4
+7
+9
+Output :6
+
+import java.util.*;
+
+public class MaxVacationDays {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        int N = sc.nextInt(); // total days
+        int M = sc.nextInt(); // obligations
+        int K = sc.nextInt(); // cancellations allowed
+
+        int[] days = new int[N]; // 0 = free, 1 = obligation
+
+        // Mark obligation days
+        for (int i = 0; i < M; i++) {
+            int d = sc.nextInt();
+            days[d - 1] = 1; // convert to 0-based index
+        }
+
+        int left = 0;
+        int obligationCount = 0;
+        int maxVacation = 0;
+
+        // Sliding Window
+        for (int right = 0; right < N; right++) {
+
+            if (days[right] == 1) {
+                obligationCount++;
+            }
+
+            // Shrink window if obligations exceed K
+            while (obligationCount > K) {
+                if (days[left] == 1) {
+                    obligationCount--;
+                }
+                left++;
+            }
+
+            // Update maximum vacation days
+            maxVacation = Math.max(maxVacation, right - left + 1);
+        }
+
+        // Output
+        System.out.println(maxVacation);
+        sc.close();
+    }
+}
