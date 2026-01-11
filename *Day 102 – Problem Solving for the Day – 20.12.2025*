@@ -1,0 +1,47 @@
+Leetcode No : 680 - Valid Palindrome II
+
+import java.util.*;
+
+public class ValidPalindromeII {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input string
+        String s = sc.nextLine();
+
+        if (validPalindrome(s)) {
+            System.out.println("true");
+        } else {
+            System.out.println("false");
+        }
+
+        sc.close();
+    }
+
+    // Check if string can be palindrome after deleting at most one char
+    public static boolean validPalindrome(String s) {
+        int left = 0, right = s.length() - 1;
+
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) {
+                // Try skipping left or right character
+                return isPalindrome(s, left + 1, right) || isPalindrome(s, left, right - 1);
+            }
+            left++;
+            right--;
+        }
+
+        return true; // Already a palindrome
+    }
+
+    // Check if substring s[left...right] is palindrome
+    private static boolean isPalindrome(String s, int left, int right) {
+        while (left < right) {
+            if (s.charAt(left) != s.charAt(right)) return false;
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
