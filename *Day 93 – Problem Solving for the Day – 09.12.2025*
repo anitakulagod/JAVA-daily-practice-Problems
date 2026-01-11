@@ -1,0 +1,43 @@
+//Write a program to reverse each word individually in a given sentence without changing the word order.
+*Test Case 01 :*
+Input : Hello World
+Output : olleH dlroW
+*Test Case 02 :*
+Input : Learn Coding Daily
+Output : nraeL gnidoC yliaD
+*Test Case 03 :*
+Input : Programming
+Output : gnimmargorP
+
+import java.util.*;
+
+public class ReverseEachWord {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Read input sentence
+        String sentence = sc.nextLine();
+
+        // Split sentence into words
+        String[] words = sentence.split(" ");
+
+        StringBuilder result = new StringBuilder();
+
+        // Reverse each word
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            StringBuilder reversedWord = new StringBuilder(word);
+            result.append(reversedWord.reverse());
+
+            // Add space between words
+            if (i < words.length - 1) {
+                result.append(" ");
+            }
+        }
+
+        System.out.println(result.toString());
+
+        sc.close();
+    }
+}
