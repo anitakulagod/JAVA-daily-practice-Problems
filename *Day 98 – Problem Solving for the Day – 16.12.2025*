@@ -1,0 +1,72 @@
+//A company conducts an internal performance review where employee scores are stored in an integer array.The HR team wants to find the Kth highest score to decide eligibility for special bonuses.
+Your task is to write a Java program to find the Kth largest element from the given list of scores.
+*Test Case 01 :*
+Input : scores = [3, 2, 1, 5, 6, 4] ,k = 2
+Output : 5
+*Test Case 02 :*
+Input : scores = [10, 4, 3, 20, 15], k = 3
+Output : 10
+*Test Case 03 :*
+Input : scores = [5], k = 1
+Output: 5
+
+import java.util.*;
+
+public class ThreeSum {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input array size
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+
+        // Input array elements
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+
+        List<List<Integer>> result = threeSum(nums);
+
+        // Print result
+        for (List<Integer> triplet : result) {
+            System.out.println(triplet);
+        }
+
+        sc.close();
+    }
+
+    public static List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(nums); // Step 1: sort array
+
+        for (int i = 0; i < nums.length - 2; i++) {
+
+            if (i > 0 && nums[i] == nums[i - 1]) continue; // skip duplicates
+
+            int left = i + 1;
+            int right = nums.length - 1;
+
+            while (left < right) {
+                int sum = nums[i] + nums[left] + nums[right];
+
+                if (sum == 0) {
+                    res.add(Arrays.asList(nums[i], nums[left], nums[right]));
+
+                    // Skip duplicates for left and right
+                    while (left < right && nums[left] == nums[left + 1]) left++;
+                    while (left < right && nums[right] == nums[right - 1]) right--;
+
+                    left++;
+                    right--;
+                } else if (sum < 0) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+        }
+
+        return res;
+    }
+}
