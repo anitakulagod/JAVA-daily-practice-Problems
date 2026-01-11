@@ -1,0 +1,54 @@
+//A cloud operations team monitors minute-by-minute net changes in server load to ensure system stability.
+1.A positive value means the server load increased during that minute.
+2.A negative value means the load reduced due to task completion or scaling.
+To investigate performance issues, the team wants to identify the continuous time period during which the total load increase was the highest, so they can analyze what caused the spike.
+Given an integer array arr of size N representing net server load changes per minute, find the maximum cumulative load increase over any continuous time interval.
+At least one minute must be included in the analysis.
+*Test Case 01 :*
+Input :
+N = 9
+arr = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+Output : 6
+*Test Case 02 :*
+Input :
+N = 5
+arr = [-4, -2, -7, -1, -3]
+Output : -1
+*Test Case 03 :*
+Input :
+N = 6
+arr = [3, -2, 5, -1, 6, -3]
+Output : 11
+
+import java.util.*;
+
+public class MaximumLoadIncrease {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Read size of array
+        int N = sc.nextInt();
+
+        int[] arr = new int[N];
+
+        // Read array elements
+        for (int i = 0; i < N; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // Kadane's Algorithm
+        int currentSum = arr[0];
+        int maxSum = arr[0];
+
+        for (int i = 1; i < N; i++) {
+            currentSum = Math.max(arr[i], currentSum + arr[i]);
+            maxSum = Math.max(maxSum, currentSum);
+        }
+
+        // Output result
+        System.out.println(maxSum);
+
+        sc.close();
+    }
+}
