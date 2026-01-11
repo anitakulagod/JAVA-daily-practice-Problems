@@ -1,0 +1,77 @@
+During an election, the Election Commission wants to determine a person’s voting eligibility and voting type based on the following inputs:
+1.Age of the person
+2.Citizenship status
+3.Voter ID availability
+Write a program to display the correct message based on the rules below.
+1.If the person is a Citizen (Y):
+a.If age ≥ 18:
+  - If the person has a Voter ID (Y):
+       - If age ≥ 60 → print Eligible Senior Citizen Voter
+       - Else → print Eligible Voter
+  - Else → print Eligible but Voter ID Required
+b.Else → print Not Eligible (Underage)
+2.Else:
+Print Not Eligible (Not a Citizen)  
+*Test Case 01 :*
+Input :
+65
+Y
+Y
+Output :
+Eligible Senior Citizen Voter
+*Test Case 02 :*
+Input : 
+30
+Y
+Y
+Output : 
+Eligible Voter
+*Test Case 03 :*
+Input :
+16
+Y
+Y
+Output :
+Not Eligible (Underage)
+
+import java.util.*;
+
+public class VotingEligibility {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input age
+        int age = sc.nextInt();
+        sc.nextLine(); // consume newline
+
+        // Input citizenship (Y/N)
+        String citizen = sc.nextLine().trim().toUpperCase();
+
+        // Input Voter ID availability (Y/N)
+        String voterID = sc.nextLine().trim().toUpperCase();
+
+        // Determine eligibility
+        if (citizen.equals("Y")) {
+
+            if (age >= 18) {
+                if (voterID.equals("Y")) {
+                    if (age >= 60) {
+                        System.out.println("Eligible Senior Citizen Voter");
+                    } else {
+                        System.out.println("Eligible Voter");
+                    }
+                } else {
+                    System.out.println("Eligible but Voter ID Required");
+                }
+            } else {
+                System.out.println("Not Eligible (Underage)");
+            }
+
+        } else {
+            System.out.println("Not Eligible (Not a Citizen)");
+        }
+
+        sc.close();
+    }
+}
