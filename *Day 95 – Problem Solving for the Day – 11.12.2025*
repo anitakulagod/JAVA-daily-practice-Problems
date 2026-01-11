@@ -1,0 +1,57 @@
+Leetcode Question : 347 - Top K Frequent Elements
+
+import java.util.*;
+
+public class TopKFrequentElements {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input array size
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+
+        // Input array elements
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+
+        // Input k
+        int k = sc.nextInt();
+
+        // Step 1: Frequency count
+        HashMap<Integer, Integer> freqMap = new HashMap<>();
+        for (int num : nums) {
+            freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+        }
+
+        // Step 2: Min Heap based on frequency
+        PriorityQueue<Map.Entry<Integer, Integer>> minHeap =
+                new PriorityQueue<>((a, b) -> a.getValue() - b.getValue());
+
+        // Step 3: Add entries to heap
+        for (Map.Entry<Integer, Integer> entry : freqMap.entrySet()) {
+            minHeap.offer(entry);
+
+            // Keep only k elements in heap
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+
+        // Step 4: Output result
+        int[] result = new int[k];
+        int index = 0;
+
+        while (!minHeap.isEmpty()) {
+            result[index++] = minHeap.poll().getKey();
+        }
+
+        // Print result
+        for (int num : result) {
+            System.out.print(num + " ");
+        }
+
+        sc.close();
+    }
+}
