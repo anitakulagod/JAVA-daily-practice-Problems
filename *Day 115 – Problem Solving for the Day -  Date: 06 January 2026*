@@ -1,0 +1,54 @@
+//Two independent systems maintain historical versions of configuration data.Over time, updates applied to each system may differ, leading to inconsistencies.The goal is to bring both systems to an identical final state to ensure compatibility.
+The only permitted operation is to discard characters from either version. No insertions, replacements, or reordering operations are allowed.Each discard operation has an associated cost, and unnecessary operations must be avoided.Your task is to determine the lowest possible cost required to achieve consistency.
+Input format : 
+S1
+S2
+Output format :
+Lowest possible cost
+*Test Case 01 :*
+Input:
+abcdxyz
+xyzabcd
+Output: 6
+*Test Case 02 :*
+Input:
+abcde
+ace
+Output: 2
+
+import java.util.*;
+
+public class MinDeletionCost {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String s1 = sc.nextLine();
+        String s2 = sc.nextLine();
+
+        int n = s1.length();
+        int m = s2.length();
+
+        // DP table for LCS
+        int[][] dp = new int[n + 1][m + 1];
+
+        // Build LCS table
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+                    dp[i][j] = 1 + dp[i - 1][j - 1];
+                } else {
+                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                }
+            }
+        }
+
+        int lcs = dp[n][m];
+
+        // Minimum deletion cost
+        int cost = (n - lcs) + (m - lcs);
+
+        System.out.println(cost);
+        sc.close();
+    }
+}
