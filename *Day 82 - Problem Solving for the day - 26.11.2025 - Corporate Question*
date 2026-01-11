@@ -1,0 +1,57 @@
+//A company is conducting an online sale where each item has a unique price. The pricing team wants to quickly identify whether any two items have a specific price difference (say k rupees).This helps them detect potential pricing errors. You are given a list of item prices and an integer k. Your job is to check whether there exists a pair (a, b) such that:
+Return / Print
+1.Print "Pair Found" if such a pair exists.
+2.Otherwise, print "No Pair".
+*Test Case 01 :*
+Input: arr = [5, 20, 3, 2, 50, 80] k = 78
+Output: Pair Found
+*Test Case 02 :*
+Input: arr = [10, 30, 40, 50, 60] k = 55
+Output: No Pair
+*Test Case 03 :*
+Input: arr = [5, 5, 5, 5] k = 0
+Output: Pair Found
+*Test Case 04 :*
+Input: arr = [-10, 0, 10, 20, 30] k = 20
+Output: Pair Found
+
+import java.util.*;
+
+public class PairWithGivenDifference {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input size
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        // Input array elements
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // Input k
+        int k = sc.nextInt();
+
+        HashSet<Integer> set = new HashSet<>();
+        boolean found = false;
+
+        for (int num : arr) {
+            if (set.contains(num + k) || set.contains(num - k)) {
+                found = true;
+                break;
+            }
+            set.add(num);
+        }
+
+        if (found) {
+            System.out.println("Pair Found");
+        } else {
+            System.out.println("No Pair");
+        }
+
+        sc.close();
+    }
+}
