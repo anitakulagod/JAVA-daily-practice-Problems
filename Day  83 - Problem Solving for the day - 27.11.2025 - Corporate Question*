@@ -1,0 +1,74 @@
+//You are given an array of strings strs[]. Your task is to find the longest common prefix shared among all the strings in the array.
+If no common prefix exists, return: - 1
+Input Format
+ - An array of strings strs[]
+Output Format
+ - Return the longest common prefix
+ - If no prefix exists, return -1
+*Test Case 01 :*
+Input : strs = ["flower", "flow", "flight"]
+Output : "fl"
+*Test Case 02 :*
+Input : strs = ["", "flow", "flight"]
+Output : -1
+*Test Case 03 :*
+Input : strs = ["", "", ""]
+Output : -1
+
+import java.util.*;
+
+public class LongestCommonPrefix {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Number of strings
+        int n = sc.nextInt();
+        sc.nextLine(); // consume newline
+
+        // If no strings
+        if (n == 0) {
+            System.out.println("-1");
+            return;
+        }
+
+        String[] strs = new String[n];
+
+        // Input strings
+        for (int i = 0; i < n; i++) {
+            strs[i] = sc.nextLine();
+        }
+
+        // If any string is empty, no common prefix
+        for (String s : strs) {
+            if (s.length() == 0) {
+                System.out.println("-1");
+                return;
+            }
+        }
+
+        // First string as prefix
+        String prefix = strs[0];
+
+        // Compare with remaining strings
+        for (int i = 1; i < n; i++) {
+            int j = 0;
+
+            while (j < prefix.length() && j < strs[i].length()
+                    && prefix.charAt(j) == strs[i].charAt(j)) {
+                j++;
+            }
+
+            prefix = prefix.substring(0, j);
+
+            if (prefix.length() == 0) {
+                System.out.println("-1");
+                return;
+            }
+        }
+
+        System.out.println(prefix);
+
+        sc.close();
+    }
+}
