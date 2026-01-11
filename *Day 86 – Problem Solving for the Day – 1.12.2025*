@@ -1,0 +1,50 @@
+//Corporate Coding Question - Leetcode 455 – Assign Cookies - Greedy Logic
+
+import java.util.*;
+
+public class AssignCookies {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input number of children
+        int n = sc.nextInt();
+        int[] g = new int[n];
+
+        // Input greed factors
+        for (int i = 0; i < n; i++) {
+            g[i] = sc.nextInt();
+        }
+
+        // Input number of cookies
+        int m = sc.nextInt();
+        int[] s = new int[m];
+
+        // Input cookie sizes
+        for (int i = 0; i < m; i++) {
+            s[i] = sc.nextInt();
+        }
+
+        // Sort both arrays
+        Arrays.sort(g);
+        Arrays.sort(s);
+
+        int i = 0, j = 0;
+        int satisfiedChildren = 0;
+
+        // Greedy assignment
+        while (i < n && j < m) {
+            if (s[j] >= g[i]) {
+                satisfiedChildren++;
+                i++;
+                j++;
+            } else {
+                j++; // try larger cookie
+            }
+        }
+
+        System.out.println(satisfiedChildren);
+
+        sc.close();
+    }
+}
