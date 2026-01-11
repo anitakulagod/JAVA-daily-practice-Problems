@@ -1,0 +1,52 @@
+//An e-commerce analytics team needs to pick two products such that the product of their daily sales numbers is maximized (to advertise a pair promotion). The sales array can include zeroes but not negative numbers (sales can't be negative). However, we’ll also include a variant where negatives are allowed.
+Given an array arr[] of non-negative integers, find the maximum product obtainable by multiplying two distinct elements from the array. Return the product as a 64-bit integer. If the array length is less than 2, return 0.
+*Test Case 01 :*
+Input: arr = [0, 0, 5]
+Output: 0
+*Test Case 02 :*
+Input: arr = [7]
+Output: 0
+*Test Case 03 :*
+Input: arr = [-10, -20, 5, 2]
+Output: 200
+
+import java.util.*;
+
+public class MaximumProductOfTwo {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input size
+        int n = sc.nextInt();
+
+        // If less than 2 elements
+        if (n < 2) {
+            System.out.println(0);
+            return;
+        }
+
+        long[] arr = new long[n];
+
+        // Input elements
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextLong();
+        }
+
+        // Sort the array
+        Arrays.sort(arr);
+
+        // Case 1: product of two largest numbers
+        long product1 = arr[n - 1] * arr[n - 2];
+
+        // Case 2: product of two smallest numbers
+        long product2 = arr[0] * arr[1];
+
+        // Maximum product
+        long result = Math.max(product1, product2);
+
+        System.out.println(result);
+
+        sc.close();
+    }
+}
