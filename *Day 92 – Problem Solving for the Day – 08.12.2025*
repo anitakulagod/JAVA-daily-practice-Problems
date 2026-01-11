@@ -1,0 +1,62 @@
+//A software company is analyzing user search queries.You are given a string S containing letters, digits, and special characters.
+*Write a program to:*
+1.Find the character that occurs the maximum number of times in the string.
+2.Ignore spaces while counting.
+3.If multiple characters have the same highest frequency, return any one of them.
+*Test Case 01 :*
+Input : aabbcccdddde
+Output : 
+Maximum Occurring Character: d
+Frequency: 4
+*Test Case 02 :*
+Input : 1122334444
+Output : 
+Maximum Occurring Character: 4
+Frequency: 4
+*Test Case 03 :*
+Input : @#$$%%^^^&&
+Output :
+Maximum Occurring Character: ^
+Frequency: 3
+
+import java.util.*;
+
+public class MaxOccurringCharacter {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Read input string
+        String s = sc.nextLine();
+
+        // HashMap to store character frequencies
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        // Count frequencies (ignore spaces)
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+
+            if (ch == ' ') {
+                continue;
+            }
+
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+
+        char maxChar = '\0';
+        int maxFreq = 0;
+
+        // Find max occurring character
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > maxFreq) {
+                maxFreq = entry.getValue();
+                maxChar = entry.getKey();
+            }
+        }
+
+        System.out.println("Maximum Occurring Character: " + maxChar);
+        System.out.println("Frequency: " + maxFreq);
+
+        sc.close();
+    }
+}
