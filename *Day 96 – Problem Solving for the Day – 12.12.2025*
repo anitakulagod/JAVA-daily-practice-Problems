@@ -1,0 +1,53 @@
+Leetcode Question : 242 Valid Anagram
+
+import java.util.*;
+
+public class ValidAnagram {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input strings
+        String s = sc.nextLine();
+        String t = sc.nextLine();
+
+        if (isAnagram(s, t)) {
+            System.out.println("true");
+        } else {
+            System.out.println("false");
+        }
+
+        sc.close();
+    }
+
+    public static boolean isAnagram(String s, String t) {
+
+        // If lengths differ, cannot be anagram
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        HashMap<Character, Integer> map = new HashMap<>();
+
+        // Count characters in s
+        for (char ch : s.toCharArray()) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+
+        // Decrease count for characters in t
+        for (char ch : t.toCharArray()) {
+            if (!map.containsKey(ch)) {
+                return false;
+            }
+
+            map.put(ch, map.get(ch) - 1);
+
+            if (map.get(ch) == 0) {
+                map.remove(ch);
+            }
+        }
+
+        // If map is empty → valid anagram
+        return map.isEmpty();
+    }
+}
