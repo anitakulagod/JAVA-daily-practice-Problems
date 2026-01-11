@@ -1,0 +1,47 @@
+//You are given a string S containing only lowercase English letters.Your task is to find and print all characters whose frequency of occurrence is an odd number.
+Characters should be printed in the order of their first appearance.If no characters have an odd frequency, print None.
+*Test Case 01 :*
+Input : programming
+output : p o a i n
+*Test Case 02 :*
+Input : aabbcc
+Output : None
+*Test Case 03 :*
+Input : abcd
+Output : a b c d
+
+import java.util.*;
+
+public class OddFrequencyCharacters {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input string
+        String s = sc.nextLine();
+
+        // LinkedHashMap to maintain order
+        LinkedHashMap<Character, Integer> freqMap = new LinkedHashMap<>();
+
+        // Count frequency
+        for (char ch : s.toCharArray()) {
+            freqMap.put(ch, freqMap.getOrDefault(ch, 0) + 1);
+        }
+
+        boolean found = false;
+
+        // Print characters with odd frequency
+        for (Map.Entry<Character, Integer> entry : freqMap.entrySet()) {
+            if (entry.getValue() % 2 != 0) {
+                System.out.print(entry.getKey() + " ");
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("None");
+        }
+
+        sc.close();
+    }
+}
