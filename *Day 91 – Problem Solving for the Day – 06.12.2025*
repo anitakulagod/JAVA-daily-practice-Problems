@@ -1,0 +1,63 @@
+//A delivery boy records the distance he travels every hour during his shift.
+*Note :*
+1.Read the number of hours (N) he worked.
+2.For each hour, read the distance travelled.
+3.Using a loop, calculate:
+      A. Total distance
+      B.Hour in which maximum distance was covered
+*Test Case 01 :*
+Input :
+5
+3 5 2 6 4
+Output :
+Total Distance: 20
+Max Distance Hour: 4
+*Test Case 02 :*
+Input :
+4
+5 5 5 5
+Output :
+Total Distance: 20
+Max Distance Hour: 1
+*Test Case 03 :*
+
+import java.util.*;
+
+public class DeliveryDistance {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Read number of hours
+        int n = sc.nextInt();
+
+        int totalDistance = 0;
+        int maxDistance = Integer.MIN_VALUE;
+        int maxHour = 1;
+
+        // Read distances
+        for (int i = 1; i <= n; i++) {
+            int distance = sc.nextInt();
+
+            totalDistance += distance;
+
+            // Update max distance and hour
+            if (distance > maxDistance) {
+                maxDistance = distance;
+                maxHour = i;
+            }
+        }
+
+        System.out.println("Total Distance: " + totalDistance);
+        System.out.println("Max Distance Hour: " + maxHour);
+
+        sc.close();
+    }
+}
+
+Input :
+5
+0 0 0 0 0
+Output :
+Total Distance: 0
+Max Distance Hour: 1
