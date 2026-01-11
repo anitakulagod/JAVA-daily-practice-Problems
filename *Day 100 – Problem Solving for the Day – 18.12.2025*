@@ -1,0 +1,60 @@
+//You are given a string P representing a password. Write a program to validate the strength of the password based on the following rules:
+*Password Rules :* 
+A password is considered Strong if it satisfies all of the following:
+1.Length must be at least 8 characters
+2.Must contain at least one uppercase letter (A–Z)
+3.Must contain at least one lowercase letter (a–z)
+4.Must contain at least one digit (0–9)
+5.Must contain at least one special character
+(! @ # $ % ^ & *)
+6.Must not contain spaces
+If all conditions are satisfied, print Strong Password, otherwise print Weak Password.
+*Test Case 01:*
+Input  : Abc@1234
+Output : Strong Password
+*Test Case 02 :*
+Input : abc@1234
+Password : Weak Password 
+*Test Case 03 :*
+Input : A@1a
+Output : Weak Password
+
+import java.util.*;
+
+public class PasswordValidator {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input password
+        String password = sc.nextLine();
+
+        // Initialize flags
+        boolean hasUpper = false;
+        boolean hasLower = false;
+        boolean hasDigit = false;
+        boolean hasSpecial = false;
+        boolean hasSpace = false;
+
+        // Special characters set
+        String specialChars = "!@#$%^&*";
+
+        // Check each character
+        for (char ch : password.toCharArray()) {
+            if (Character.isUpperCase(ch)) hasUpper = true;
+            else if (Character.isLowerCase(ch)) hasLower = true;
+            else if (Character.isDigit(ch)) hasDigit = true;
+            else if (specialChars.indexOf(ch) >= 0) hasSpecial = true;
+            else if (ch == ' ') hasSpace = true;
+        }
+
+        // Validate password
+        if (password.length() >= 8 && hasUpper && hasLower && hasDigit && hasSpecial && !hasSpace) {
+            System.out.println("Strong Password");
+        } else {
+            System.out.println("Weak Password");
+        }
+
+        sc.close();
+    }
+}
