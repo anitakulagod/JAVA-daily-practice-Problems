@@ -1,0 +1,58 @@
+//*Separate Positive and Negative Numbers in an Array*
+Given an integer array, write a program to separate all positive numbers and negative numbers into two different arrays.
+ - Zero (0) can be considered as positive.
+ - Maintain the original order of elements.
+*Test Case 01 :*
+Input :
+arr = [1, -3, 5, -2, -8, 6, 0]
+Output :
+Positive Array: [1, 5, 6, 0]
+Negative Array: [-3, -2, -8]
+*Test Case 02 :*
+Input : arr = [-10, -5, -1]
+Output : 
+Positive Array: []
+Negative Array: [-10, -5, -1]
+*Test Case 03 :*
+Input : arr = [4, 7, 9]
+Output :
+Positive Array: [4, 7, 9]
+Negative Array: []
+
+import java.util.*;
+
+public class SeparatePositiveNegative {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Read size of array
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        // Read array elements
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // Lists to store positives and negatives
+        ArrayList<Integer> positive = new ArrayList<>();
+        ArrayList<Integer> negative = new ArrayList<>();
+
+        // Separate elements
+        for (int num : arr) {
+            if (num >= 0) {
+                positive.add(num);   // zero included here
+            } else {
+                negative.add(num);
+            }
+        }
+
+        // Print result
+        System.out.println("Positive Array: " + positive);
+        System.out.println("Negative Array: " + negative);
+
+        sc.close();
+    }
+}
