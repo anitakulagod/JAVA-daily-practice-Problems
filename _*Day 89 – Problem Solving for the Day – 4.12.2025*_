@@ -1,0 +1,62 @@
+//Indian Railways is introducing a new system to generate a Passenger Identity Code based on the person’s name.This code helps ticket examiners quickly verify passengers during peak hours.
+*Rule to Generate Passenger Identity Code*
+*From the passenger’s full name:*
+1.Ignore spaces.
+2.Treat letters case-insensitively.
+3.Find the first character that appears only once in the name.
+4.Return that character in lowercase.
+5.If no such character exists, return '-'.
+Write a Java program to find the first non-repeating (unique) character in a passenger's full name followings rules above.
+- If a unique character exists → return that character
+- If not → return '-'
+*Test Case 01 :*
+Input : Passenger Name: Anna Thomas
+Output : t
+*Test Case 02 :*
+Input : Passenger Name: Aaa Nnn
+Output : -
+*Test Case 03 :*
+Input : s = "z"
+Output : z
+
+import java.util.*;
+
+public class PassengerIdentityCode {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input passenger name
+        String name = sc.nextLine();
+
+        // Convert to lowercase
+        name = name.toLowerCase();
+
+        // LinkedHashMap to maintain order
+        LinkedHashMap<Character, Integer> map = new LinkedHashMap<>();
+
+        // Count frequency ignoring spaces
+        for (int i = 0; i < name.length(); i++) {
+            char ch = name.charAt(i);
+
+            if (ch == ' ') {
+                continue; // ignore spaces
+            }
+
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+        }
+
+        // Find first non-repeating character
+        char result = '-';
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == 1) {
+                result = entry.getKey();
+                break;
+            }
+        }
+
+        System.out.println(result);
+
+        sc.close();
+    }
+}
