@@ -1,0 +1,63 @@
+//Two friends, Alex and Ben, are analyzing a player’s points scored in consecutive matches.They want to see if the player’s performance can be arranged in ascending order to identify improvement patterns.
+1.The scores are recorded in an integer array arr of size N.
+2.Alex notices that the scores are almost in order, but maybe just one mix-up happened.
+3.Ben suggests that if they swap just two scores, they might get the perfect ascending sequence.
+4.Your task is to determine whether it is possible to have the scores in perfect ascending order by swapping only one pair.
+5.This helps the friends quickly analyze performance trends without reviewing all games manually.
+*Test Case 01 :*
+Input :
+N = 5
+arr = [10, 20, 15, 25, 30]
+Output : Yes
+*Test Case 02 :*
+Input :
+N = 6
+arr = [12, 18, 25, 20, 15, 30]
+Output : No 
+*Test Case 03 :*
+Input :
+N = 4
+arr = [8, 5, 10, 12]
+Output :Yes
+
+import java.util.*;
+
+public class OneSwapSortCheck {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Read size of array
+        int N = sc.nextInt();
+
+        int[] arr = new int[N];
+        int[] sorted = new int[N];
+
+        // Read array elements
+        for (int i = 0; i < N; i++) {
+            arr[i] = sc.nextInt();
+            sorted[i] = arr[i];
+        }
+
+        // Sort the copied array
+        Arrays.sort(sorted);
+
+        int diffCount = 0;
+
+        // Count mismatched positions
+        for (int i = 0; i < N; i++) {
+            if (arr[i] != sorted[i]) {
+                diffCount++;
+            }
+        }
+
+        // Decision
+        if (diffCount == 0 || diffCount == 2) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+
+        sc.close();
+    }
+}
