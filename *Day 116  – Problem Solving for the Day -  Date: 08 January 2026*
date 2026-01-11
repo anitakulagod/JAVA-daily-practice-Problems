@@ -1,0 +1,111 @@
+//A factory manufactures electronic components using a single automated assembly line.Each customer order requires exactly one hour of uninterrupted production time.
+Every order is associated with:
+1.A deadline (in hours from the start of the day), and
+2.A profit earned only if the order is completed on or before its deadline.
+The assembly line can process only one order per hour.Orders completed after their deadlines generate no profit and should be avoided.Once the production of an order begins, it cannot be paused or rescheduled.The factory manager must decide the production sequence before the day begins in order to:
+1.Maximize the total profit earned, and
+2.Determine the number of orders successfully produced.
+This decision directly affects factory revenue, resource utilization, and customer satisfaction.Your task is to compute the maximum achievable profit and the total number of orders produced given the list of orders.
+Input Format:
+An integer N, representing the number of orders.
+A list of N pairs, where each pair consists of:
+Deadlineᵢ → the latest hour by which the order must be completed
+Profitᵢ → profit earned if completed on time
+N
+Deadline1 Profit1
+Deadline2 Profit2
+...
+DeadlineN ProfitN
+Output Format :
+Print two integers:
+The maximum total profit that can be earned
+The number of orders produced
+Maximum_Profit Number_of_Orders
+Constraints
+1 ≤ N ≤ 10⁵
+1 ≤ Deadlineᵢ ≤ N
+1 ≤ Profitᵢ ≤ 10⁶
+*Test Case 01 :*
+Input : 
+3
+2 100
+1 50
+2 10
+Output 
+150 2
+*Test case 02 :* 
+Input : 
+4
+3 40
+1 10
+2 50
+3 30
+Output : 
+120 3
+*Test Case 03 :* 
+Input : 
+3
+1 20
+2 60
+2 30
+Output : 
+90 2
+
+import java.util.*;
+
+public class JobSequencing {
+
+    static class Job {
+        int deadline;
+        int profit;
+
+        Job(int d, int p) {
+            deadline = d;
+            profit = p;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        Job[] jobs = new Job[n];
+
+        for (int i = 0; i < n; i++) {
+            int d = sc.nextInt();
+            int p = sc.nextInt();
+            jobs[i] = new Job(d, p);
+        }
+
+        // Step 1: Sort jobs by profit (descending)
+        Arrays.sort(jobs, (a, b) -> b.profit - a.profit);
+
+        // Step 2: Find maximum deadline
+        int maxDeadline = 0;
+        for (Job job : jobs) {
+            maxDeadline = Math.max(maxDeadline, job.deadline);
+        }
+
+        // Step 3: Slot array to track occupied hours
+        boolean[] slot = new boolean[maxDeadline + 1];
+
+        int totalProfit = 0;
+        int count = 0;
+
+        // Step 4: Schedule jobs
+        for (Job job : jobs) {
+            for (int t = job.deadline; t >= 1; t--) {
+                if (!slot[t]) {
+                    slot[t] = true;
+                    totalProfit += job.profit;
+                    count++;
+                    break;
+                }
+            }
+        }
+
+        System.out.println(totalProfit + " " + count);
+        sc.close();
+    }
+}
