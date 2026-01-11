@@ -1,0 +1,55 @@
+//N light bulbs are connected by a wire. Each bulb has a switch associated with it, however due to faulty wiring, a switch also changes the state of all the bulbs to the right of current bulb. Given an initial state of all bulbs, Find the minimum number of switches you have to press to turn on all the bulbs. You can press the same switch multiple times
+Note: 0 represents the bulb is off and 1 represents the bulb is on.
+*Test Case 01 :*
+Input: A[] = [0 1 0 1]
+Output: 4
+*Test Case 02 :*
+Input: A[] = [1 0 0 0 0]
+Output: 1
+*Test Case 03 :*
+Input: A[] = [1 1 1 1]
+Output : 0 
+*Test Case 04 :*
+Input: A[] = [1 0 1 0 1 0]
+Output: 5
+
+import java.util.*;
+
+public class BulbSwitchProblem {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input number of bulbs
+        int n = sc.nextInt();
+        int[] A = new int[n];
+
+        // Input bulb states
+        for (int i = 0; i < n; i++) {
+            A[i] = sc.nextInt();
+        }
+
+        int pressCount = 0;
+
+        for (int i = 0; i < n; i++) {
+
+            int currentState;
+
+            // Determine effective state
+            if (pressCount % 2 == 0) {
+                currentState = A[i];
+            } else {
+                currentState = 1 - A[i];
+            }
+
+            // If bulb is OFF, press switch
+            if (currentState == 0) {
+                pressCount++;
+            }
+        }
+
+        System.out.println(pressCount);
+
+        sc.close();
+    }
+}
