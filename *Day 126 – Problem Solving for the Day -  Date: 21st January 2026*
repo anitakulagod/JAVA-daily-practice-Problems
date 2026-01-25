@@ -1,0 +1,99 @@
+//A large warehouse stores products on a single long shelf.Each product has a unique priority code that indicates the correct position it should occupy on the shelf.Due to repeated manual handling and urgent dispatches, the products on the shelf are no longer placed in the correct priority order.
+The warehouse manager wants to restore the shelf to the correct priority sequence, but moving products is costly and time-consuming.
+In one operation, the manager is allowed to exchange the positions of any two products on the shelf. To plan manpower and time efficiently, the manager needs to determine the minimum number of product exchanges required to place all products in their correct priority positions.
+You are given an integer array arr of size N, where each element represents the priority code of the product currently placed at that position.
+Your task is to compute the minimum number of exchanges needed so that every product ends up in its correct position based on ascending priority order.
+*Test Case 01 :*
+Input : 
+N = 4
+arr = [4, 3, 2, 1]
+Output : 2
+*Test Case 02 :*
+Input :
+N = 5
+arr = [2, 3, 4, 1, 5]
+Output : 3
+*Test Case 03 :*
+Input : 
+N = 6
+arr = [1, 5, 4, 3, 2, 6]
+Output : 2
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class MinimumSwaps {
+
+    static class Pair {
+        int value;
+        int index;
+
+        Pair(int value, int index) {
+            this.value = value;
+            this.index = index;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input size
+        System.out.print("Enter number of products: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        // Input array
+        System.out.println("Enter priority codes:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        int result = minSwaps(arr, n);
+
+        System.out.println("Minimum number of exchanges required: " + result);
+
+        sc.close();
+    }
+
+    public static int minSwaps(int[] arr, int n) {
+
+        Pair[] pairs = new Pair[n];
+
+        // Store value and original index
+        for (int i = 0; i < n; i++) {
+            pairs[i] = new Pair(arr[i], i);
+        }
+
+        // Sort by value
+        Arrays.sort(pairs, (a, b) -> a.value - b.value);
+
+        boolean[] visited = new boolean[n];
+        int swaps = 0;
+
+        // Cycle detection
+        for (int i = 0; i < n; i++) {
+
+            // Already visited or already in correct position
+            if (visited[i] || pairs[i].index == i) {
+                continue;
+            }
+
+            int cycleSize = 0;
+            int j = i;
+
+            while (!visited[j]) {
+                visited[j] = true;
+                j = pairs[j].index;
+                cycleSize++;
+            }
+
+            if (cycleSize > 1) {
+                swaps += (cycleSize - 1);
+            }
+        }
+
+        return swaps;
+    }
+}
