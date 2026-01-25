@@ -1,0 +1,99 @@
+//Leetcode No : 21 - Merge two sorted lists - Two Pointers Approach
+
+import java.util.Scanner;
+
+public class MergeTwoSortedLists {
+
+    // Definition for singly-linked list
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+            this.next = null;
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input first list
+        System.out.print("Enter number of elements in List 1: ");
+        int n1 = sc.nextInt();
+        ListNode list1 = createList(sc, n1);
+
+        // Input second list
+        System.out.print("Enter number of elements in List 2: ");
+        int n2 = sc.nextInt();
+        ListNode list2 = createList(sc, n2);
+
+        // Merge lists
+        ListNode mergedHead = mergeTwoLists(list1, list2);
+
+        // Print merged list
+        System.out.println("Merged Sorted List:");
+        printList(mergedHead);
+
+        sc.close();
+    }
+
+    // Function to merge two sorted linked lists
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+
+        ListNode dummy = new ListNode(-1);
+        ListNode current = dummy;
+
+        while (l1 != null && l2 != null) {
+
+            if (l1.val <= l2.val) {
+                current.next = l1;
+                l1 = l1.next;
+            } else {
+                current.next = l2;
+                l2 = l2.next;
+            }
+
+            current = current.next;
+        }
+
+        // Attach remaining nodes
+        if (l1 != null) {
+            current.next = l1;
+        } else {
+            current.next = l2;
+        }
+
+        return dummy.next;
+    }
+
+    // Helper: create linked list
+    public static ListNode createList(Scanner sc, int n) {
+
+        if (n == 0) return null;
+
+        System.out.println("Enter elements in sorted order:");
+        ListNode head = new ListNode(sc.nextInt());
+        ListNode current = head;
+
+        for (int i = 1; i < n; i++) {
+            current.next = new ListNode(sc.nextInt());
+            current = current.next;
+        }
+
+        return head;
+    }
+
+    // Helper: print linked list
+    public static void printList(ListNode head) {
+
+        ListNode temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.val + " ");
+            temp = temp.next;
+        }
+        System.out.println();
+    }
+}
