@@ -1,0 +1,96 @@
+//Airport security officials have confiscated several items at the security checkpoint. Each item is assigned a risk severity represented by an integer: 0, 1, or 2. All items are stored in an array. Write a program to sort the items in ascending order of risk severity.
+*Input Format:*
+First line: An integer N denoting the number of items.
+Next N lines: Each line contains an integer (0, 1, or 2) representing the risk of an item.
+*Output Format:*
+A single line containing the sorted risk values separated by spaces.
+*Test Case 1:*
+Input:
+7
+1
+0
+2
+0
+1
+0
+2
+Output :
+0 0 0 1 1 2 2
+*Test Case 02 :*
+Input : 
+10
+2
+1
+0
+2
+1
+0
+0
+1
+2
+0
+Output :
+0 0 0 0 1 1 1 2 2 2
+
+import java.util.Scanner;
+
+public class SortRiskItems {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input number of items
+        System.out.print("Enter number of items: ");
+        int n = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        // Input risk values
+        System.out.println("Enter risk values (0, 1, or 2):");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        // Sort using Dutch National Flag Algorithm
+        sortRisks(arr);
+
+        // Output result
+        System.out.println("Sorted risk values:");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+
+        sc.close();
+    }
+
+    // Function to sort 0s, 1s, and 2s
+    public static void sortRisks(int[] arr) {
+
+        int low = 0, mid = 0;
+        int high = arr.length - 1;
+
+        while (mid <= high) {
+
+            if (arr[mid] == 0) {
+                swap(arr, low, mid);
+                low++;
+                mid++;
+            } 
+            else if (arr[mid] == 1) {
+                mid++;
+            } 
+            else { // arr[mid] == 2
+                swap(arr, mid, high);
+                high--;
+            }
+        }
+    }
+
+    // Swap helper function
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
