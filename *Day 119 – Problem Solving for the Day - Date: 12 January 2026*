@@ -1,0 +1,59 @@
+//Leetcode No : 455. Assign Cookies
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class AssignCookies {
+
+    public static int findContentChildren(int[] g, int[] s) {
+
+        // Sort greed factors and cookie sizes
+        Arrays.sort(g);
+        Arrays.sort(s);
+
+        int child = 0;
+        int cookie = 0;
+
+        // Traverse both arrays
+        while (child < g.length && cookie < s.length) {
+
+            // If cookie can satisfy child
+            if (s[cookie] >= g[child]) {
+                child++;   // child is satisfied
+            }
+
+            // Move to next cookie
+            cookie++;
+        }
+
+        return child; // number of satisfied children
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of children: ");
+        int n = sc.nextInt();
+        int[] g = new int[n];
+
+        System.out.println("Enter greed factors of children:");
+        for (int i = 0; i < n; i++) {
+            g[i] = sc.nextInt();
+        }
+
+        System.out.print("Enter number of cookies: ");
+        int m = sc.nextInt();
+        int[] s = new int[m];
+
+        System.out.println("Enter sizes of cookies:");
+        for (int i = 0; i < m; i++) {
+            s[i] = sc.nextInt();
+        }
+
+        int result = findContentChildren(g, s);
+        System.out.println("Maximum number of satisfied children: " + result);
+
+        sc.close();
+    }
+}
