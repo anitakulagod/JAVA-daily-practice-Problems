@@ -1,0 +1,58 @@
+//Leetcode No : 621. Task Scheduler  - Greedy Approach
+
+//import java.util.Scanner;
+
+public class TaskScheduler {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input number of tasks
+        System.out.print("Enter number of tasks: ");
+        int nTasks = sc.nextInt();
+        char[] tasks = new char[nTasks];
+
+        System.out.println("Enter tasks (A-Z):");
+        for (int i = 0; i < nTasks; i++) {
+            tasks[i] = sc.next().charAt(0);
+        }
+
+        // Input cooling time
+        System.out.print("Enter cooling time n: ");
+        int n = sc.nextInt();
+
+        // Frequency array for 26 uppercase letters
+        int[] freq = new int[26];
+
+        for (char task : tasks) {
+            freq[task - 'A']++;
+        }
+
+        // Find maximum frequency
+        int maxFreq = 0;
+        for (int f : freq) {
+            maxFreq = Math.max(maxFreq, f);
+        }
+
+        // Count how many tasks have max frequency
+        int countMax = 0;
+        for (int f : freq) {
+            if (f == maxFreq) {
+                countMax++;
+            }
+        }
+
+        // Apply greedy formula
+        int partCount = maxFreq - 1;
+        int partLength = n + 1;
+        int minTime = partCount * partLength + countMax;
+
+        // Final answer
+        int result = Math.max(minTime, tasks.length);
+
+        System.out.println("Minimum time required: " + result);
+
+        sc.close();
+    }
+}
