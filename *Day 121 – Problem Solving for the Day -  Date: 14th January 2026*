@@ -1,0 +1,58 @@
+//Leetcode 134 – Gas Station - Greedy Approach
+
+import java.util.Scanner;
+
+public class GasStation {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input number of gas stations
+        System.out.print("Enter number of gas stations: ");
+        int n = sc.nextInt();
+
+        int[] gas = new int[n];
+        int[] cost = new int[n];
+
+        // Input gas array
+        System.out.println("Enter gas available at each station:");
+        for (int i = 0; i < n; i++) {
+            gas[i] = sc.nextInt();
+        }
+
+        // Input cost array
+        System.out.println("Enter cost to travel to next station:");
+        for (int i = 0; i < n; i++) {
+            cost[i] = sc.nextInt();
+        }
+
+        int totalGas = 0;
+        int totalCost = 0;
+        int currentTank = 0;
+        int startIndex = 0;
+
+        // Greedy traversal
+        for (int i = 0; i < n; i++) {
+            totalGas += gas[i];
+            totalCost += cost[i];
+
+            currentTank += gas[i] - cost[i];
+
+            // If tank becomes negative, reset start
+            if (currentTank < 0) {
+                startIndex = i + 1;
+                currentTank = 0;
+            }
+        }
+
+        // Final check
+        if (totalGas < totalCost) {
+            System.out.println("Starting index: -1 (Not possible)");
+        } else {
+            System.out.println("Starting index: " + startIndex);
+        }
+
+        sc.close();
+    }
+}
