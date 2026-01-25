@@ -1,0 +1,41 @@
+//Google data centers receive millions of requests every second from users across the world. To optimize infrastructure usage, incoming requests are grouped into batches.Each batch is routed to one of two different server pipelines based on a hidden numerical rule.The routing rule depends only on the batch size value provided by the monitoring system.
+The system must determine the correct routing pipeline for each batch.
+Given the number of requests in a batch, determine which routing pipeline the batch should be sent to and display the result.
+If the batch qualifies for the optimized pipeline, print: Optimized Server
+Otherwise Print : Standard Server 
+*Test Case 01 :*
+Input : 8
+Output : Optimized Server
+*Test Case 02 :*
+Input : 15
+Output : Standard Server
+*Test Case 03 :*
+Input : 1024
+Output : Optimized Server
+
+import java.util.Scanner;
+
+public class DataCenterRouting {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input batch size
+        System.out.print("Enter batch size: ");
+        int batchSize = sc.nextInt();
+
+        if (isPowerOfTwo(batchSize)) {
+            System.out.println("Optimized Server");
+        } else {
+            System.out.println("Standard Server");
+        }
+
+        sc.close();
+    }
+
+    // Function to check power of 2
+    public static boolean isPowerOfTwo(int n) {
+        return n > 0 && (n & (n - 1)) == 0;
+    }
+}
