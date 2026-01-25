@@ -1,0 +1,89 @@
+//A logistics company named FastMove operates a smart warehouse that packs products into shipping boxes every hour. During each hour, a fixed number of products arrive at the warehouse, and every product has a specific weight while each box has a maximum weight capacity. The packing system loads the products one by one in the order they arrive and keeps adding them into the current box until the weight limit is reached. Once the box reaches its maximum capacity, it is sealed and sent for delivery, and a new box is opened for the remaining products. Any extra weight beyond the allowed capacity is not permitted in a box. If a single product’s weight is greater than the box capacity, it must be shipped alone using a special box. The company wants to simulate this packing process to plan how many delivery trucks will be needed. Your task is to calculate how many boxes are required to pack all the products based on their weights and the box capacity.
+Input Format
+N → Number of products
+W → Maximum weight capacity of one box
+arr[] → Array representing weights of N products in arrival order
+Output
+Return the minimum number of boxes required to pack all products.
+*Test Case 1 :*
+Input :
+N = 6  
+W = 10  
+arr = [2, 4, 6, 3, 5, 2]
+Output : 3
+*Test Case 02 :*
+Input :
+N = 4  
+W = 5  
+arr = [6, 2, 3, 4]
+Output : 3
+*Test Case 03 :*
+Input :
+N = 5  
+W = 8  
+arr = [1, 3, 4, 2, 6]
+Output : 2
+
+import java.util.Scanner;
+
+public class MinimumBoxesRequired {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input number of products
+        System.out.print("Enter number of products: ");
+        int n = sc.nextInt();
+
+        // Input box capacity
+        System.out.print("Enter box capacity: ");
+        int W = sc.nextInt();
+
+        int[] arr = new int[n];
+
+        // Input product weights
+        System.out.println("Enter product weights:");
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        int boxes = calculateBoxes(arr, n, W);
+
+        System.out.println("Minimum number of boxes required: " + boxes);
+
+        sc.close();
+    }
+
+    // Greedy function to calculate boxes
+    public static int calculateBoxes(int[] arr, int n, int W) {
+
+        int boxes = 0;
+        int currentWeight = 0;
+
+        for (int i = 0; i < n; i++) {
+
+            // If product itself is heavier than box capacity
+            if (arr[i] > W) {
+                boxes++;           // special box
+                currentWeight = 0; // reset current box
+            }
+            // If product fits in current box
+            else if (currentWeight + arr[i] <= W) {
+                currentWeight += arr[i];
+            }
+            // Open new box
+            else {
+                boxes++;
+                currentWeight = arr[i];
+            }
+        }
+
+        // Count the last box if it has items
+        if (currentWeight > 0) {
+            boxes++;
+        }
+
+        return boxes;
+    }
+}
