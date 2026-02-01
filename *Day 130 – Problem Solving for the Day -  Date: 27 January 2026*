@@ -1,0 +1,77 @@
+//A smart warehouse packs products into delivery boxes.Each product has a specific weight, and each box can carry at most two products.The warehouse has a maximum box capacity C, and a box can only be used if the total weight of products inside it does not exceed C.
+Each product must be packed, and a product can be placed in only one box.The goal is to minimize the number of boxes used.
+Input Format :
+N
+W1 W2 W3 ... WN
+C
+Output Format:
+Minimum number of boxes required
+*Test Case 1 :*
+Input :
+4
+3 5 3 4
+6
+Output : 3
+*Test Case 02 :*
+Input :
+6
+2 3 4 5 6 7
+8
+Output : 4
+*Test Case 03 :*
+Input : 
+7
+1 2 3 4 5 6 7
+7
+Output :
+4
+
+import java.util.*;
+
+public class MinimumBoxes {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Number of products
+        int N = sc.nextInt();
+
+        int[] weights = new int[N];
+
+        // Product weights
+        for (int i = 0; i < N; i++) {
+            weights[i] = sc.nextInt();
+        }
+
+        // Box capacity
+        int C = sc.nextInt();
+
+        // Sort the weights
+        Arrays.sort(weights);
+
+        int left = 0;
+        int right = N - 1;
+        int boxes = 0;
+
+        // Two-pointer approach
+        while (left <= right) {
+
+            // If lightest + heaviest fit in one box
+            if (weights[left] + weights[right] <= C) {
+                left++;
+                right--;
+            } else {
+                // Heaviest product goes alone
+                right--;
+            }
+
+            boxes++; // One box is used
+        }
+
+        // Output result
+        System.out.println(boxes);
+
+        sc.close();
+    }
+}
