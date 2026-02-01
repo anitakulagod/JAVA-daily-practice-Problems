@@ -1,0 +1,73 @@
+//A shopkeeper visits a wholesale market to purchase fruits and vegetables for his store.
+Each fruit or vegetable has a fixed cost per unit.
+The shopkeeper has a limited amount of money and wants to purchase as many items as possible.
+He is allowed to buy items in any order.However, once his money is insufficient to buy the next selected item, he must stop purchasing.The prices of all available fruits and vegetables are given.
+The shopkeeper may choose the order of purchase wisely.
+Your task is to determine the maximum number of fruits and vegetables he can buy within the given budget.
+The goal is to ensure the money is used in the most effective way.
+Design a solution to compute the required result.
+Input format : 
+First line contains two integers N and M
+N → number of fruits and vegetables
+M → total money available
+Second line contains N space-separated integers representing the prices
+Output format : 
+Print a single integer
+Maximum number of fruits and vegetables that can be purchased
+ *Test Case 1* : 
+Input :
+5 50
+10 20 30 5 15
+Output : 4 
+ *Test Case 02* : 
+Input : 
+4 25
+8 6 10 20
+Output : 3
+ *Test Case 03* : 
+Input : 
+6 40
+12 3 7 25 8 10
+Output : 5
+
+import java.util.*;
+
+public class MaximumItemsPurchase {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input number of items and total money
+        int N = sc.nextInt();
+        int M = sc.nextInt();
+
+        int[] prices = new int[N];
+
+        // Input prices
+        for (int i = 0; i < N; i++) {
+            prices[i] = sc.nextInt();
+        }
+
+        // Sort prices in ascending order
+        Arrays.sort(prices);
+
+        int count = 0;
+        int money = M;
+
+        // Buy items starting from cheapest
+        for (int i = 0; i < N; i++) {
+            if (money >= prices[i]) {
+                money -= prices[i];
+                count++;
+            } else {
+                break;
+            }
+        }
+
+        // Output result
+        System.out.println(count);
+
+        sc.close();
+    }
+}
