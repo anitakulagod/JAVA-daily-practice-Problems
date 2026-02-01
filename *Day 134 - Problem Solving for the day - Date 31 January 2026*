@@ -1,0 +1,78 @@
+//The multinational company SkyRoute Logistics, based in Europe, operates a massive international express highway used by delivery trucks from different countries.Every day, thousands of freight vehicles from the USA, Germany, Japan, and Canada enter this highway to transport goods across borders.
+Each truck has a specific weight depending on its cargo. To avoid damage to the road and to maintain safety, SkyRoute Logistics has set a strict rule.Only two trucks are allowed to enter an express slot at the same time.The total weight of the trucks in one slot must not exceed a fixed safety limit decided by the company.
+Every truck must pass through the express system exactly once, either alone or paired with another truck.The company wants to ensure that all trucks pass using the minimum number of express slots to reduce traffic delays and fuel consumption.
+You are part of SkyRoute’s AI traffic control team.Your job is to determine the minimum number of express slots required to allow all trucks to pass safely.
+Input Format
+1.An integer N – number of trucks
+2.An integer L – maximum weight allowed per express slot
+3.An array W of size N representing the weights of the trucks
+Output Format
+Return a single integer — the minimum number of express slots required.Constraints
+*Test Case 1 :*
+Input :
+N = 6  
+L = 100  
+W = [40, 50, 60, 30, 20, 70]
+Output : 3
+*Test Case 02 :*
+Input :
+N = 5  
+L = 80  
+W = [20, 50, 30, 60, 40]
+Output : 3
+*Test Case 03 :*
+Input :
+N = 4  
+L = 60  
+W = [40, 40, 40, 40]
+Output : 4
+
+import java.util.*;
+
+public class MinimumExpressSlots {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Number of trucks
+        int N = sc.nextInt();
+
+        // Weight limit per express slot
+        int L = sc.nextInt();
+
+        int[] W = new int[N];
+
+        // Truck weights
+        for (int i = 0; i < N; i++) {
+            W[i] = sc.nextInt();
+        }
+
+        // Sort the weights
+        Arrays.sort(W);
+
+        int left = 0;
+        int right = N - 1;
+        int slots = 0;
+
+        // Two-pointer greedy approach
+        while (left <= right) {
+
+            // If two trucks can go together
+            if (W[left] + W[right] <= L) {
+                left++;
+                right--;
+            } else {
+                // Heaviest truck goes alone
+                right--;
+            }
+
+            slots++; // One slot is used
+        }
+
+        // Output result
+        System.out.println(slots);
+
+        sc.close();
+    }
+}
