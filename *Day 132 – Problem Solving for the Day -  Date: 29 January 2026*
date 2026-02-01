@@ -1,0 +1,60 @@
+//Leetcode No 316 : Remove Duplicate Letters
+
+import java.util.*;
+
+public class RemoveDuplicateLetters {
+
+    public static String removeDuplicateLetters(String s) {
+
+        int[] freq = new int[26];
+        boolean[] visited = new boolean[26];
+
+        // Count frequency of each character
+        for (char ch : s.toCharArray()) {
+            freq[ch - 'a']++;
+        }
+
+        Stack<Character> stack = new Stack<>();
+
+        for (char ch : s.toCharArray()) {
+
+            // Reduce frequency as character is processed
+            freq[ch - 'a']--;
+
+            // If already in stack, skip
+            if (visited[ch - 'a']) {
+                continue;
+            }
+
+            // Maintain lexicographical order
+            while (!stack.isEmpty() &&
+                    stack.peek() > ch &&
+                    freq[stack.peek() - 'a'] > 0) {
+
+                visited[stack.pop() - 'a'] = false;
+            }
+
+            // Push current character
+            stack.push(ch);
+            visited[ch - 'a'] = true;
+        }
+
+        // Build result from stack
+        StringBuilder result = new StringBuilder();
+        for (char ch : stack) {
+            result.append(ch);
+        }
+
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+        String s = sc.nextLine();
+
+        System.out.println(removeDuplicateLetters(s));
+
+        sc.close();
+    }
+}
