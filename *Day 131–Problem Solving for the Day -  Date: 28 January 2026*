@@ -1,0 +1,86 @@
+//A water supply company named AquaFlow manages water distribution to a residential apartment complex.Every morning, the company pumps water into a large overhead tank.The tank has a maximum capacity of C liters.Initially, the tank contains I liters of water.
+Water is consumed by residents throughout the day at a constant rate of R liters per hour. At the same time, AquaFlow pumps water into the tank at a fixed rate of P liters per hour.
+The pumping continues for T hours, after which it stops completely.Water consumption continues even after pumping stops.
+Your task is to determine how many total hours the tank can supply water before it becomes empty.If the tank overflows at any point, extra water is wasted and not stored.Assume there is no leakage and all rates remain constant.
+Input Format :
+A single line containing five space-separated integers:
+Where:
+C → Maximum capacity of the tank (in liters)
+I → Initial amount of water in the tank (in liters)
+P → Pumping rate (liters per hour)
+R → Consumption rate (liters per hour)
+T → Number of hours pumping continues
+Output Format : 
+Print a single number representing the total number of hours the tank can supply water.
+The output can be a decimal value if the tank empties in between hours.
+*Test Case 1 :*
+C = 500
+I = 200
+P = 60
+R = 40
+T = 5
+Output : 12.5
+*Test Case 2:*
+C = 300
+I = 50
+P = 20
+R = 40
+T = 10
+Output : 2.5
+*Test Case 03 :*
+C = 400
+I = 100
+P = 50
+R = 30
+T = 4
+Output :10
+
+import java.util.Scanner;
+
+public class AquaFlowWaterSupply {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input values
+        double C = sc.nextDouble(); // Tank capacity
+        double I = sc.nextDouble(); // Initial water
+        double P = sc.nextDouble(); // Pumping rate
+        double R = sc.nextDouble(); // Consumption rate
+        double T = sc.nextDouble(); // Pumping time
+
+        double water = I;
+        double time = 0;
+
+        // Phase 1: During pumping
+        double netRate = P - R;
+
+        if (netRate >= 0) {
+            // Water increases or stays same
+            water = Math.min(C, I + netRate * T);
+            time = T;
+        } else {
+            // Water decreases during pumping
+            double timeToEmpty = I / R;
+
+            if (timeToEmpty <= T) {
+                // Tank empties before pumping ends
+                System.out.println(timeToEmpty);
+                return;
+            } else {
+                water = I + netRate * T;
+                time = T;
+            }
+        }
+
+        // Phase 2: After pumping stops
+        double extraTime = water / R;
+        time += extraTime;
+
+        // Output result
+        System.out.println(time);
+
+        sc.close();
+    }
+}
